@@ -1,4 +1,4 @@
-package com.nb_tonsillitis_p;
+package com.naivebayes;
 
 public class Control {
 
