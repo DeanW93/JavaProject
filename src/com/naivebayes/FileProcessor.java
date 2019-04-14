@@ -48,6 +48,7 @@ public class FileProcessor
 				
 				if(i == 0)
 				{
+					
 					System.out.println("Creating patient...");
 					Control.patients[j] = new Patient();
 				}
@@ -79,7 +80,6 @@ public class FileProcessor
 								default:
 								{	
 									System.out.println("Error: ReadData() Nested switch case 0 index out of range, please contact program administrator.");
-									break;
 								}	
 							}
 							
@@ -96,15 +96,24 @@ public class FileProcessor
 								Control.patients[j].setAches(true);
 								break;
 							}
+							case "yes":
+							{
+								Control.patients[j].setAches(true);
+								break;
+							}
 							case "No":
+							{	
+								Control.patients[j].setAches(false);
+								break;
+							}
+							case "no":
 							{	
 								Control.patients[j].setAches(false);
 								break;
 							}	
 							default:
 							{
-								System.out.println("Error: ReadData() Nested switch index out of range, please contact program administrator.");
-								break;
+								System.out.println("Error: ReadData() Nested switch case 1 index out of range, please contact program administrator.");
 							}
 						}
 						
@@ -123,15 +132,26 @@ public class FileProcessor
 								
 								break;
 							}
+							case "yes":
+							{
+								Control.patients[j].setSoreThroat(true);
+								
+								break;
+							}
+							
 							case "No":
+							{	
+								Control.patients[j].setSoreThroat(false);
+								break;
+							}
+							case "no":
 							{	
 								Control.patients[j].setSoreThroat(false);
 								break;
 							}	
 							default:
 							{
-								System.out.println("Error: ReadData() Nested switch index out of range, please contact program administrator.");
-								break;
+								System.out.println("Error: ReadData() Nested switch case 2 index out of range, please contact program administrator.");
 							}
 						}
 						
@@ -149,15 +169,24 @@ public class FileProcessor
 								Control.patients[j].setTonsillitis(true);
 								break;
 							}
+							case "yes":
+							{
+								Control.patients[j].setTonsillitis(true);
+								break;
+							}
 							case "No":
+							{	
+								Control.patients[j].setTonsillitis(false);
+								break;
+							}	
+							case "no":
 							{	
 								Control.patients[j].setTonsillitis(false);
 								break;
 							}	
 							default:
 							{
-								System.out.println("Error: ReadData() Nested switch index out of range, please contact program administrator.");
-								break;
+								System.out.println("Error: ReadData() Nested switch case 3 index out of range, please contact program administrator.");
 							}
 						}
 						break;
@@ -167,7 +196,6 @@ public class FileProcessor
 					default:
 					{
 						System.out.println("Error: ReadData() Outer switch index out of range, please contact program administrator.");
-						break;
 					}	
 				
 				}//end outer switch(i)
@@ -273,6 +301,7 @@ public class FileProcessor
 				
 				if(i > 2)
 				{
+					System.out.println(Control.patients[j].getTemperature() + " " + Control.patients[j].isAches() + " " + Control.patients[j].isSoreThroat() + " " + Control.patients[j].isTonsillitis() );
 					j++;
 				}
 				i++;
