@@ -216,85 +216,83 @@ public class FileProcessor
 				{
 
 					//POPULATE TEMPERATURE TRAINING ARRAYS
-					
 					if(Control.patients[j].isTonsillitis())
 					{
 						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
-							training.hot[j] = true;
+							training.hot.add(true);
 						}
 						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
-							training.normal[j] = true;
+							training.normal.add(true);
 						}
 						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
-							training.cool[j] = true;
+							training.cool.add(true);
 						}
 					}
 					else
 					{
 						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
-							training.hot[j] = false;
+							training.hot.add(false);
 						}
 						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
-							training.normal[j] = false;
+							training.normal.add(false);
 						}
 						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
-							training.cool[j] = false;
+							training.cool.add(false);
 						}
 					}
 					
 					//POPULATE ACHES TRAINING ARRAYS
-					
 					if(Control.patients[j].isTonsillitis())
 					{
-						if(Control.patients[j].isAches())							//Patient has aches, HAS tonsillitis
+						if(Control.patients[j].isAches())							
 						{
-							training.ache[j] = true;
+							training.ache.add(true);											//Patient has aches, HAS tonsillitis
 						}
 						else
 						{
-							training.no_ache[j] = true;										//Patient has no aches, HAS tonsillitis
+							training.no_ache.add(true);										//Patient has no aches, HAS tonsillitis
 						}
 					}
 					else
 					{
 						if(Control.patients[j].isAches())
 						{
-							training.ache[j] = false;										//Patient has aches, NO tonsillitis
+							training.ache.add(false);										//Patient has aches, NO tonsillitis
 						}
 						else
 						{
-							training.no_ache[j] = false;										//Patient has no aches, NO tonsillitis
+							training.no_ache.add(false);										//Patient has no aches, NO tonsillitis
 						}
 					}
 					
 					//POPULATE SORE THROAT ARRAYS
-					
 					if(Control.patients[j].isTonsillitis())
 					{
 						if(Control.patients[j].isSoreThroat())
 						{
-							training.sore[j] = true;											//Patient has sore throat, HAS tonsillitis
+							training.sore.add(true);											//Patient has sore throat, HAS tonsillitis
 						}
 						else
 						{
-							training.not_sore[j] = true;										//Patient has no sore throat, HAS tonsillitis
+							training.not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
 						}
 					}
 					else
 					{
 						if(Control.patients[j].isSoreThroat())
 						{
-							training.sore[j] = false;										//Patient has sore throat, NO tonsillitis
+							
+							training.sore.add(false);										//Patient has sore throat, NO tonsillitis
 						}
 						else
 						{
-							training.not_sore[j] = false;									//Patient has no sore throat, NO tonsillitis
+							training.not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
 						}
 					}
 				}

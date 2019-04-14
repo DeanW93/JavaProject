@@ -10,6 +10,8 @@
 
 package com.naivebayes;
 
+import java.util.ArrayList;
+
 public class Training {
 	
 	/*
@@ -20,19 +22,19 @@ public class Training {
 	
 	//Temperature:
 	
-	boolean[] hot; 
-	boolean[] normal;
-	boolean[] cool;
+	ArrayList<Boolean> hot;
+	ArrayList<Boolean> normal;
+	ArrayList<Boolean> cool;
 	
 	//Aches
 	
-	boolean[] ache;
-	boolean[] no_ache;
+	ArrayList<Boolean> ache;
+	ArrayList<Boolean> no_ache;
 	
 	//Sore Throat
 	
-	boolean[] sore;
-	boolean[] not_sore;
+	ArrayList<Boolean> sore;
+	ArrayList<Boolean> not_sore;
 	
 	
 	
@@ -43,15 +45,15 @@ public class Training {
 
 	public Training()
     {
-		hot = new boolean[100]; 
-		normal = new boolean[100]; 
-		cool = new boolean[100]; 
+		hot = new ArrayList<>(); 
+		normal = new ArrayList<>(); 
+		cool = new ArrayList<>(); 
 		
-		ache  = new boolean[100];
-		no_ache = new boolean[100];
+		ache  = new ArrayList<>();
+		no_ache = new ArrayList<>();
 		
-		sore  = new boolean[100]; 
-		not_sore  = new boolean[100]; ;
+		sore  = new ArrayList<>(); 
+		not_sore  = new ArrayList<>();
     }
 
 }
