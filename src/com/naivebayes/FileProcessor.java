@@ -4,19 +4,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class FileProcessor {
+public class FileProcessor
+{
+	private File DataSet;
 	
-	File DataSet;
-	
-	public FileProcessor(String filepath)
+	public FileProcessor(String DataSet)
 	{
-		 DataSet = new File(filepath);
+		setDataSet(DataSet);
 	}
 	
-	/*
-	 * ReadData():
-	 * Description:
-	 */
+	public void setDataSet(String DataSet)
+	{
+		this.DataSet = new File(DataSet);
+	}
+	
 	public void ReadData()
 	{
 		try 
@@ -31,7 +32,7 @@ public class FileProcessor {
 			 * 					storing the relevant data in attributes for later use.
 			 */
 			int i=0;	
-			int j=-1;
+			int j=0;
 			
 			while(ReadData.hasNextLine()) 
 			{
@@ -40,12 +41,15 @@ public class FileProcessor {
 					i = 0;
 				}
 				
+				
+				
 				if(i == 0)
 				{
-					j++;
-					Patient patient = new Patient();
-					patientlist.add(patient);
+					System.out.println("Creating patient...");
+					Control.patients[j] = new Patient();
 				}
+				
+				
 				
 				switch(i)
 				{
@@ -56,17 +60,17 @@ public class FileProcessor {
 							{
 								case "hot":
 								{
-									patientlist.get(j).setTemperature("hot");
+									Control.patients[j].setTemperature("hot");
 									break;
 								}
 								case "normal":
 								{	
-									patientlist.get(j).setTemperature("normal");
+									Control.patients[j].setTemperature("normal");
 									break;
 								}	
 								case "cool":
 								{	
-									patientlist.get(j).setTemperature("cool");
+									Control.patients[j].setTemperature("cool");
 									break;
 								}	
 								default:
@@ -86,12 +90,12 @@ public class FileProcessor {
 						{
 							case "Yes":
 							{
-								patientlist.get(j).setAches(true);
+								Control.patients[j].setAches(true);
 								break;
 							}
 							case "No":
 							{	
-								patientlist.get(j).setAches(false);
+								Control.patients[j].setAches(false);
 								break;
 							}	
 							default:
@@ -112,13 +116,13 @@ public class FileProcessor {
 						{
 							case "Yes":
 							{
-								patientlist.get(j).setSore_throat(true);
+								Control.patients[j].setSoreThroat(true);
 								
 								break;
 							}
 							case "No":
 							{	
-								patientlist.get(j).setSore_throat(false);
+								Control.patients[j].setSoreThroat(false);
 								break;
 							}	
 							default:
@@ -139,12 +143,12 @@ public class FileProcessor {
 						{
 							case "Yes":
 							{
-								patientlist.get(j).setTonsillitis(true);
+								Control.patients[j].setTonsillitis(true);
 								break;
 							}
 							case "No":
 							{	
-								patientlist.get(j).setTonsillitis(false);
+								Control.patients[j].setTonsillitis(false);
 								break;
 							}	
 							default:
@@ -182,89 +186,94 @@ public class FileProcessor {
 
 					//POPULATE TEMPERATURE TRAINING ARRAYS
 					
-					if(patientlist.get(j).hasTonsillitis())
+					if(Control.patients[j].isTonsillitis())
 					{
-						if(patientlist.get(j).getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
+						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
-							hot[j] = true;
+							Training.hot[j] = true;
 						}
-						else if(patientlist.get(j).getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
+						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
-							normal[j] = true;
+							Training.normal[j] = true;
 						}
-						else if(patientlist.get(j).getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
+						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
-							cool[j] = true;
+							Training.cool[j] = true;
 						}
 					}
 					else
 					{
-						if(patientlist.get(j).getTemperature() == "hot")			//Patient is hot, NO tonsillitis
+						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
-							hot[j] = false;
+							Training.hot[j] = false;
 						}
-						else if(patientlist.get(j).getTemperature() == "normal")	//Patient is normal, NO tonsillitis
+						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
-							normal[j] = false;
+							Training.normal[j] = false;
 						}
-						else if(patientlist.get(j).getTemperature() == "cool")		//Patient is cool, NO tonsillitis
+						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
-							cool[j] = false;
+							Training.cool[j] = false;
 						}
 					}
 					
 					//POPULATE ACHES TRAINING ARRAYS
 					
-					if(patientlist.get(j).hasTonsillitis())
+					if(Control.patients[j].isTonsillitis())
 					{
-						if(patientlist.get(j).hasAches())							//Patient has aches, HAS tonsillitis
+						if(Control.patients[j].isAches())							//Patient has aches, HAS tonsillitis
 						{
-							ache[j] = true;
+							Training.ache[j] = true;
 						}
 						else
 						{
-							no_ache[j] = true;										//Patient has no aches, HAS tonsillitis
+							Training.no_ache[j] = true;										//Patient has no aches, HAS tonsillitis
 						}
 					}
 					else
 					{
-						if(patientlist.get(j).hasAches())
+						if(Control.patients[j].isAches())
 						{
-							ache[j] = false;										//Patient has aches, NO tonsillitis
+							Training.ache[j] = false;										//Patient has aches, NO tonsillitis
 						}
 						else
 						{
-							no_ache[j] = false;										//Patient has no aches, NO tonsillitis
+							Training.no_ache[j] = false;										//Patient has no aches, NO tonsillitis
 						}
 					}
 					
 					//POPULATE SORE THROAT ARRAYS
 					
-					if(patientlist.get(j).hasTonsillitis())
+					if(Control.patients[j].isTonsillitis())
 					{
-						if(patientlist.get(j).hasSore_throat())
+						if(Control.patients[j].isSoreThroat())
 						{
-							sore[j] = true;											//Patient has sore throat, HAS tonsillitis
+							Training.sore[j] = true;											//Patient has sore throat, HAS tonsillitis
 						}
 						else
 						{
-							not_sore[j] = true;										//Patient has no sore throat, HAS tonsillitis
+							Training.not_sore[j] = true;										//Patient has no sore throat, HAS tonsillitis
 						}
 					}
 					else
 					{
-						if(patientlist.get(j).hasSore_throat())
+						if(Control.patients[j].isSoreThroat())
 						{
-							sore[j] = false;										//Patient has sore throat, NO tonsillitis
+							Training.sore[j] = false;										//Patient has sore throat, NO tonsillitis
 						}
 						else
 						{
-							not_sore[j] = false;									//Patient has no sore throat, NO tonsillitis
+							Training.not_sore[j] = false;									//Patient has no sore throat, NO tonsillitis
 						}
 					}
 				}
+				System.out.println("end iteration");
+				if(i > 2)
+				{
+					j++;
+				}
 				i++;
-			
+				
 			}//end while
 			
 			
@@ -275,11 +284,5 @@ public class FileProcessor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		
 	}
-
 }

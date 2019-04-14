@@ -11,33 +11,14 @@
 
 package com.naivebayes;
 
-public class Patient {
-	
+public class Patient
+{
 	private String temperature;
 	private boolean aches;
-	private boolean sore_throat;
+	private boolean soreThroat;
 	private boolean tonsillitis;
 	
-	
-	/*
-	 * Constructor
-	 */
-	
-	public Patient()
-	{
-		
-	}
-	
-	
-	/*
-	 * Methods
-	 */
-	
-	
-	
-	/*
-	 * Getters / Setters 
-	 */
+	public Patient(){}
 	
 	public String getTemperature() {
 		return temperature;
@@ -45,23 +26,22 @@ public class Patient {
 	public void setTemperature(String temperature) {
 		this.temperature = temperature;
 	}
-	public boolean hasAches() {
+	public boolean isAches() {
 		return aches;
 	}
 	public void setAches(boolean aches) {
 		this.aches = aches;
 	}
-	public boolean hasSore_throat() {
-		return sore_throat;
+	public boolean isSoreThroat() {
+		return soreThroat;
 	}
-	public void setSore_throat(boolean sore_throat) {
-		this.sore_throat = sore_throat;
+	public void setSoreThroat(boolean soreThroat) {
+		this.soreThroat = soreThroat;
 	}
-	public boolean hasTonsillitis() {
+	public boolean isTonsillitis() {
 		return tonsillitis;
 	}
 	public void setTonsillitis(boolean tonsillitis) {
 		this.tonsillitis = tonsillitis;
 	}
-
 }

@@ -10,14 +10,17 @@
 
 package com.naivebayes;
 
-public class Control {
 
-	public static void main(String[] args) {
-		
+public class Control
+{
+	static Patient[] patients = new Patient[20];
+	
+	public static void main(String[] args)
+	{
 		FileProcessor fp = new FileProcessor("DataSet.txt");
-		Training TrData = new Training();
+		
 		fp.ReadData();
-
+		
 	}
 
 }
