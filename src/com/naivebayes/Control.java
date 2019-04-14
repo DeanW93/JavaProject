@@ -14,6 +14,7 @@ package com.naivebayes;
 public class Control
 {
 	static Patient[] patients = new Patient[20];
+	static Training training =  new Training();
 	
 	public static void main(String[] args)
 	{

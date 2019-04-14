@@ -20,19 +20,19 @@ public class Training {
 	
 	//Temperature:
 	
-	static boolean[] hot; 
-	static boolean[] normal;
-	static boolean[] cool;
+	boolean[] hot; 
+	boolean[] normal;
+	boolean[] cool;
 	
 	//Aches
 	
-	static boolean[] ache;
-	static boolean[] no_ache;
+	boolean[] ache;
+	boolean[] no_ache;
 	
 	//Sore Throat
 	
-	static boolean[] sore;
-	static boolean[] not_sore;
+	boolean[] sore;
+	boolean[] not_sore;
 	
 	
 	
@@ -43,8 +43,15 @@ public class Training {
 
 	public Training()
     {
+		hot = new boolean[100]; 
+		normal = new boolean[100]; 
+		cool = new boolean[100]; 
 		
-       
+		ache  = new boolean[100];
+		no_ache = new boolean[100];
+		
+		sore  = new boolean[100]; 
+		not_sore  = new boolean[100]; ;
     }
 
 }

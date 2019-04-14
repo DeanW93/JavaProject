@@ -7,10 +7,12 @@ import java.util.Scanner;
 public class FileProcessor
 {
 	private File DataSet;
+	Training training;
 	
 	public FileProcessor(String DataSet)
 	{
 		setDataSet(DataSet);
+		training = new Training();
 	}
 	
 	public void setDataSet(String DataSet)
@@ -36,6 +38,7 @@ public class FileProcessor
 			
 			while(ReadData.hasNextLine()) 
 			{
+				
 				if(i > 3)
 				{
 					i = 0;
@@ -75,7 +78,7 @@ public class FileProcessor
 								}	
 								default:
 								{	
-									System.out.println("Error: ReadData() Nested switch index out of range, please contact program administrator.");
+									System.out.println("Error: ReadData() Nested switch case 0 index out of range, please contact program administrator.");
 									break;
 								}	
 							}
@@ -190,30 +193,30 @@ public class FileProcessor
 					{
 						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
-							Training.hot[j] = true;
+							training.hot[j] = true;
 						}
 						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
-							Training.normal[j] = true;
+							training.normal[j] = true;
 						}
 						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
-							Training.cool[j] = true;
+							training.cool[j] = true;
 						}
 					}
 					else
 					{
 						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
-							Training.hot[j] = false;
+							training.hot[j] = false;
 						}
 						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
-							Training.normal[j] = false;
+							training.normal[j] = false;
 						}
 						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
-							Training.cool[j] = false;
+							training.cool[j] = false;
 						}
 					}
 					
@@ -223,22 +226,22 @@ public class FileProcessor
 					{
 						if(Control.patients[j].isAches())							//Patient has aches, HAS tonsillitis
 						{
-							Training.ache[j] = true;
+							training.ache[j] = true;
 						}
 						else
 						{
-							Training.no_ache[j] = true;										//Patient has no aches, HAS tonsillitis
+							training.no_ache[j] = true;										//Patient has no aches, HAS tonsillitis
 						}
 					}
 					else
 					{
 						if(Control.patients[j].isAches())
 						{
-							Training.ache[j] = false;										//Patient has aches, NO tonsillitis
+							training.ache[j] = false;										//Patient has aches, NO tonsillitis
 						}
 						else
 						{
-							Training.no_ache[j] = false;										//Patient has no aches, NO tonsillitis
+							training.no_ache[j] = false;										//Patient has no aches, NO tonsillitis
 						}
 					}
 					
@@ -248,31 +251,33 @@ public class FileProcessor
 					{
 						if(Control.patients[j].isSoreThroat())
 						{
-							Training.sore[j] = true;											//Patient has sore throat, HAS tonsillitis
+							training.sore[j] = true;											//Patient has sore throat, HAS tonsillitis
 						}
 						else
 						{
-							Training.not_sore[j] = true;										//Patient has no sore throat, HAS tonsillitis
+							training.not_sore[j] = true;										//Patient has no sore throat, HAS tonsillitis
 						}
 					}
 					else
 					{
 						if(Control.patients[j].isSoreThroat())
 						{
-							Training.sore[j] = false;										//Patient has sore throat, NO tonsillitis
+							training.sore[j] = false;										//Patient has sore throat, NO tonsillitis
 						}
 						else
 						{
-							Training.not_sore[j] = false;									//Patient has no sore throat, NO tonsillitis
+							training.not_sore[j] = false;									//Patient has no sore throat, NO tonsillitis
 						}
 					}
 				}
-				System.out.println("end iteration");
+				
 				if(i > 2)
 				{
 					j++;
 				}
 				i++;
+				
+				
 				
 			}//end while
 			
