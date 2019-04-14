@@ -3,7 +3,9 @@ package com.naivebayes;
 public class Control {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		Training test = new Training();
+		test.ReadData();
 
 	}
 
