@@ -3,10 +3,8 @@ package com.naivebayes;
 
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,12 +17,11 @@ public class MainMenu extends JFrame {
 	
 	private JButton button1;
 	
-	private JLabel label1;
+	private JLabel Title;
 	
 	private GridBagConstraints m;
 	private GridBagConstraints b;
 	private GridBagConstraints p;
-	private GridBagConstraints l;
 	
 	public MainMenu(String title)
 	{
@@ -37,6 +34,7 @@ public class MainMenu extends JFrame {
 		m.gridx = 0;
 		m.gridy = 0;
 		
+		//PANELS
 		panel1 = new JPanel();
 		panel1.setLayout(new GridBagLayout());
 		panel1.setBackground(Color.RED);
@@ -52,6 +50,8 @@ public class MainMenu extends JFrame {
         p.anchor = GridBagConstraints.FIRST_LINE_START;
         
 		add(panel1, p);
+		
+		//BUTTONS
 
 		button1 = new JButton("Read Data set");
         
@@ -65,6 +65,9 @@ public class MainMenu extends JFrame {
         
         panel1.add(button1, b);
         
+        //LABELS
+        JLabel Title = new JLabel();
+        
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 		//setUndecorated(true); Fullscreen
 		setVisible(true);
@@ -74,35 +77,6 @@ public class MainMenu extends JFrame {
 	
 	
 	
-	
-	/*
-	 * Getters / Setters
-	 */
-	
-	public JPanel getPanel1() {
-		return panel1;
-	}
-	public void setPanel1(JPanel panel1) {
-		this.panel1 = panel1;
-	}
-	public JButton getButton1() {
-		return button1;
-	}
-	public void setButton1(JButton button1) {
-		this.button1 = button1;
-	}
-
-
-
-	public JLabel getLabel1() {
-		return label1;
-	}
-
-
-
-	public void setLabel1(JLabel label1) {
-		this.label1 = label1;
-	}
 
 
 
