@@ -20,13 +20,13 @@ public class Control
 	@SuppressWarnings("unused")
 	public static void main(String[] args)
 	{
-		//GUI menu = new GUI("Naive Bayes");	
+		GUI menu = new GUI("Naive Bayes");	
 		
-		FileProcessor fp = new FileProcessor("DataSet.txt");
+//		FileProcessor fp = new FileProcessor("DataSet.txt");
 		
-		fp.ReadData();
-		System.out.println(" \n\nHOT =>" + fp.getTraining().hot + " \n\nNORMAL =>" + fp.getTraining().normal + " \n\nCOOL =>" + fp.getTraining().cool);
-		System.out.println(" \n\nACHE =>" + fp.getTraining().ache + " \n\n NO ACHE =>" + fp.getTraining().no_ache);
-		System.out.println(" \n\nSORE =>" + fp.getTraining().sore + " \n\n NOT SORE =>" + fp.getTraining().not_sore);
+//		fp.ReadData();
+//		System.out.println(" \n\nHOT =>" + fp.getTraining().hot + " \n\nNORMAL =>" + fp.getTraining().normal + " \n\nCOOL =>" + fp.getTraining().cool);
+//		System.out.println(" \n\nACHE =>" + fp.getTraining().ache + " \n\n NO ACHE =>" + fp.getTraining().no_ache);
+//		System.out.println(" \n\nSORE =>" + fp.getTraining().sore + " \n\n NOT SORE =>" + fp.getTraining().not_sore);
 	}
 }
