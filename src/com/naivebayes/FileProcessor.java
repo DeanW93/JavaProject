@@ -17,6 +17,12 @@ public class FileProcessor
 		setTraining(new Training());
 	}
 	
+	public FileProcessor(File chosenFile)
+	{
+		setDataSet(chosenFile);
+		setTraining(new Training());
+	}
+	
 	
 	//Methods:
 	
@@ -375,6 +381,11 @@ public class FileProcessor
 	public void setDataSet(String DataSet)
 	{
 		this.DataSet = new File(DataSet);
+	}
+	
+	public void setDataSet(File chosenFile)
+	{
+		this.DataSet = chosenFile;
 	}
 
 
