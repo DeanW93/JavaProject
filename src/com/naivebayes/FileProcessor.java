@@ -15,13 +15,46 @@ public class FileProcessor
 		training = new Training();
 	}
 	
-	public void setDataSet(String DataSet)
+	
+	//Methods:
+	
+	public int CheckDataSize()
 	{
-		this.DataSet = new File(DataSet);
+		int count_lines = 0;
+		
+		try
+		{
+			Scanner ReadData = new Scanner(DataSet);
+			while(ReadData.hasNextLine())
+			{
+				System.out.println(ReadData.nextLine());
+				count_lines++;
+				System.out.println("line " + count_lines + " added...");
+			}
+			ReadData.close();
+		} 
+		catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return count_lines;
+		
 	}
 	
+	
+	/*
+	 * Read Data method:
+	 * 
+	 * Description:
+	 * 
+	 */
 	public void ReadData()
 	{
+		
+		
+		Patient[] patients = new Patient[CheckDataSize()];
+		
 		try 
 		{
 			Scanner ReadData = new Scanner(DataSet);
@@ -50,7 +83,7 @@ public class FileProcessor
 				{
 					
 					System.out.println("Creating patient...");
-					Control.patients[j] = new Patient();
+					patients[j] = new Patient();
 				}
 				
 				
@@ -64,17 +97,17 @@ public class FileProcessor
 							{
 								case "hot":
 								{
-									Control.patients[j].setTemperature("hot");
+									patients[j].setTemperature("hot");
 									break;
 								}
 								case "normal":
 								{	
-									Control.patients[j].setTemperature("normal");
+									patients[j].setTemperature("normal");
 									break;
 								}	
 								case "cool":
 								{	
-									Control.patients[j].setTemperature("cool");
+									patients[j].setTemperature("cool");
 									break;
 								}	
 								default:
@@ -93,22 +126,22 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
-								Control.patients[j].setAches(true);
+								patients[j].setAches(true);
 								break;
 							}
 							case "yes":
 							{
-								Control.patients[j].setAches(true);
+								patients[j].setAches(true);
 								break;
 							}
 							case "No":
 							{	
-								Control.patients[j].setAches(false);
+								patients[j].setAches(false);
 								break;
 							}
 							case "no":
 							{	
-								Control.patients[j].setAches(false);
+								patients[j].setAches(false);
 								break;
 							}	
 							default:
@@ -128,25 +161,25 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
-								Control.patients[j].setSoreThroat(true);
+								patients[j].setSoreThroat(true);
 								
 								break;
 							}
 							case "yes":
 							{
-								Control.patients[j].setSoreThroat(true);
+								patients[j].setSoreThroat(true);
 								
 								break;
 							}
 							
 							case "No":
 							{	
-								Control.patients[j].setSoreThroat(false);
+								patients[j].setSoreThroat(false);
 								break;
 							}
 							case "no":
 							{	
-								Control.patients[j].setSoreThroat(false);
+								patients[j].setSoreThroat(false);
 								break;
 							}	
 							default:
@@ -166,22 +199,22 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
-								Control.patients[j].setTonsillitis(true);
+								patients[j].setTonsillitis(true);
 								break;
 							}
 							case "yes":
 							{
-								Control.patients[j].setTonsillitis(true);
+								patients[j].setTonsillitis(true);
 								break;
 							}
 							case "No":
 							{	
-								Control.patients[j].setTonsillitis(false);
+								patients[j].setTonsillitis(false);
 								break;
 							}	
 							case "no":
 							{	
-								Control.patients[j].setTonsillitis(false);
+								patients[j].setTonsillitis(false);
 								break;
 							}	
 							default:
@@ -216,41 +249,41 @@ public class FileProcessor
 				{
 
 					//POPULATE TEMPERATURE TRAINING ARRAYS
-					if(Control.patients[j].isTonsillitis())
+					if(patients[j].isTonsillitis())
 					{
-						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
+						if(patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
 							training.hot.add(true);
 						}
-						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
+						else if(patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
 							training.normal.add(true);
 						}
-						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
+						else if(patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
 							training.cool.add(true);
 						}
 					}
 					else
 					{
-						if(Control.patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
+						if(patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
 							training.hot.add(false);
 						}
-						else if(Control.patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
+						else if(patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
 							training.normal.add(false);
 						}
-						else if(Control.patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
+						else if(patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
 							training.cool.add(false);
 						}
 					}
 					
 					//POPULATE ACHES TRAINING ARRAYS
-					if(Control.patients[j].isTonsillitis())
+					if(patients[j].isTonsillitis())
 					{
-						if(Control.patients[j].isAches())							
+						if(patients[j].isAches())							
 						{
 							training.ache.add(true);											//Patient has aches, HAS tonsillitis
 						}
@@ -261,7 +294,7 @@ public class FileProcessor
 					}
 					else
 					{
-						if(Control.patients[j].isAches())
+						if(patients[j].isAches())
 						{
 							training.ache.add(false);										//Patient has aches, NO tonsillitis
 						}
@@ -272,9 +305,9 @@ public class FileProcessor
 					}
 					
 					//POPULATE SORE THROAT ARRAYS
-					if(Control.patients[j].isTonsillitis())
+					if(patients[j].isTonsillitis())
 					{
-						if(Control.patients[j].isSoreThroat())
+						if(patients[j].isSoreThroat())
 						{
 							training.sore.add(true);											//Patient has sore throat, HAS tonsillitis
 						}
@@ -285,7 +318,7 @@ public class FileProcessor
 					}
 					else
 					{
-						if(Control.patients[j].isSoreThroat())
+						if(patients[j].isSoreThroat())
 						{
 							
 							training.sore.add(false);										//Patient has sore throat, NO tonsillitis
@@ -299,7 +332,7 @@ public class FileProcessor
 				
 				if(i > 2)
 				{
-					System.out.println(Control.patients[j].getTemperature() + " " + Control.patients[j].isAches() + " " + Control.patients[j].isSoreThroat() + " " + Control.patients[j].isTonsillitis() );
+					System.out.println(patients[j].getTemperature() + " " + patients[j].isAches() + " " + patients[j].isSoreThroat() + " " + patients[j].isTonsillitis() );
 					j++;
 				}
 				i++;
@@ -316,5 +349,17 @@ public class FileProcessor
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
+	}
+	
+	/*
+	 * Getters and Setters
+	 */
+	
+	public void setDataSet(String DataSet)
+	{
+		this.DataSet = new File(DataSet);
 	}
 }

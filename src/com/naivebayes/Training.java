@@ -17,7 +17,7 @@ public class Training {
 	/*
 	 * 	Attributes:
 	 * 
-	 * 	boolean: true implies tonsillitis, false implies no tonsillitis
+	 * 	boolean: true implies instance of attribute with tonsillitis, false implies instance with no tonsillitis
 	 */
 	
 	//Temperature:
