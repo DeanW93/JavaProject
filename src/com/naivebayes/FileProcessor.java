@@ -228,7 +228,6 @@ public class FileProcessor
 							case "Yes":
 							{
 								patients[j].setTonsillitis(true);
-								setTonsillitis_count(getTonsillitis_count() + 1);
 								break;
 							}
 							case "yes":
@@ -415,5 +414,45 @@ public class FileProcessor
 
 	public void setTonsillitis_count(int tonsillitis_count) {
 		this.tonsillitis_count = tonsillitis_count;
+	}
+
+	public int getHot_count() {
+		return hot_count;
+	}
+
+	public void setHot_count(int hot_count) {
+		this.hot_count = hot_count;
+	}
+
+	public int getNormal_count() {
+		return normal_count;
+	}
+
+	public void setNormal_count(int normal_count) {
+		this.normal_count = normal_count;
+	}
+
+	public int getCool_count() {
+		return cool_count;
+	}
+
+	public void setCool_count(int cool_count) {
+		this.cool_count = cool_count;
+	}
+
+	public int getAche_count() {
+		return ache_count;
+	}
+
+	public void setAche_count(int ache_count) {
+		this.ache_count = ache_count;
+	}
+
+	public int getNo_ache_count() {
+		return no_ache_count;
+	}
+
+	public void setNo_ache_count(int no_ache_count) {
+		this.no_ache_count = no_ache_count;
 	}
 }
