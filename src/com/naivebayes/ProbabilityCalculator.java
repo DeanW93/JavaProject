@@ -44,7 +44,7 @@ public class ProbabilityCalculator extends Training
 		
 	}
 	
-	public void NaiveBayesAlgorithm(Patient patient, int tonsillitis_count, int hot_count, int norm_count, int cool_count, int ache_count, int noache_count,
+	public void NaiveBayesAlgorithm(Patient patient, int tonsillitis_count, int hot_count, int norm_count, int cool_count, int ache_count, int no_ache_count,
 														int sore_count, int notsore_count, int num_of_patients, ArrayList<Boolean> hot, ArrayList<Boolean> normal, 
 														ArrayList<Boolean> cool, ArrayList<Boolean> ache, ArrayList<Boolean> no_ache, ArrayList<Boolean> sore, ArrayList<Boolean> not_sore)
 	{

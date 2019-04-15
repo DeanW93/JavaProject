@@ -10,6 +10,11 @@ public class FileProcessor
 	private Training training;
 	private Patient[] patients;
 	private int tonsillitis_count;
+	private int hot_count;
+	private int normal_count;
+	private int cool_count;
+	private int ache_count;
+	private int no_ache_count;
 	
 	public FileProcessor(String DataSet)
 	{
@@ -33,6 +38,7 @@ public class FileProcessor
 	 * Description: Counts how many patient entries are in the given data set
 	 * 
 	 */
+	
 	public int CheckDataSize()
 	{
 		int count_lines = 0;
@@ -116,6 +122,7 @@ public class FileProcessor
 							{
 								case "hot":
 								{
+									
 									patients[j].setTemperature("hot");
 									break;
 								}
