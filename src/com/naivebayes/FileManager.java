@@ -18,8 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class FileManager extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
-
-	FileProcessor fp;
+	static FileProcessor fp;
 	JPanel header;
 	JLabel headerText;
 	JFileChooser fileChooser;
@@ -30,7 +29,7 @@ public class FileManager extends JFrame implements ActionListener
 		fp = new FileProcessor();
 		
 		setSize(550, 450);
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setLayout(new FlowLayout());
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -55,20 +54,21 @@ public class FileManager extends JFrame implements ActionListener
 		add(fileChooser);
 	 }
 	
-	public void actionPerformed(ActionEvent actionEvent, FileProcessor fp)
+	public void actionPerformed(ActionEvent actionEvent)
 	{
 		String command = actionEvent.getActionCommand();
 		if (command.equals(JFileChooser.APPROVE_SELECTION))
 		{
 			File selectedFile = fileChooser.getSelectedFile();
-			FileProcessor fp = new FileProcessor(selectedFile);
+			fp = new FileProcessor(selectedFile);
 			fp.ReadData();
 			JOptionPane.showMessageDialog(null, "File Processed!");
 		}
 		else if (command.equals(JFileChooser.CANCEL_SELECTION))
 		{
-			dispose();
+			hide();
 		}
 	}
+
 }
 
