@@ -21,7 +21,6 @@ public class GUI extends JFrame implements ActionListener
 	JPanel header;
 	JLabel headerText;
 	JButton fileManagerButton;
-	JButton trainingOpsButton;
 	JButton patientEvalButton;
 	JButton helpPageButton;
 	
@@ -46,22 +45,17 @@ public class GUI extends JFrame implements ActionListener
 	    headerText.setFont(new Font("", Font.PLAIN, 35));
 	    
 	    fileManagerButton = new JButton();
-	    fileManagerButton.setPreferredSize(new Dimension(190, 40));
+	    fileManagerButton.setPreferredSize(new Dimension(257, 40));
 	    fileManagerButton.setText("Read Dataset");
 	    fileManagerButton.addActionListener(this);
 	    
-	    trainingOpsButton = new JButton();
-	    trainingOpsButton.setPreferredSize(new Dimension(190, 40));
-	    trainingOpsButton.setText("Training Options");
-	    trainingOpsButton.addActionListener(this);
-	    
 	    patientEvalButton = new JButton();
-	    patientEvalButton.setPreferredSize(new Dimension(190, 40));
+	    patientEvalButton.setPreferredSize(new Dimension(257, 40));
 	    patientEvalButton.setText("Patient Evaluation");
 	    patientEvalButton.addActionListener(this);
 	    
 	    helpPageButton = new JButton();
-	    helpPageButton.setPreferredSize(new Dimension(190, 40));
+	    helpPageButton.setPreferredSize(new Dimension(257, 40));
 	    helpPageButton.setText("Help");
 	    helpPageButton.addActionListener(this);
 	    
@@ -69,7 +63,6 @@ public class GUI extends JFrame implements ActionListener
 	    
 	    add(header);
 	    add(fileManagerButton);
-	    add(trainingOpsButton);
 	    add(patientEvalButton);
 	    add(helpPageButton);
 	}
@@ -79,10 +72,6 @@ public class GUI extends JFrame implements ActionListener
 		 if(e.getSource() == fileManagerButton)
 		 {
 			 FileManager fm = new FileManager("File Manager");
-		 }
-		 else if(e.getSource() == trainingOpsButton)
-		 {
-			 TrainingOptions to = new TrainingOptions("Training Options");
 		 }
 		 else if(e.getSource() == patientEvalButton)
 		 {
