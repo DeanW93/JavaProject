@@ -28,6 +28,8 @@ public class FileProcessor
 		setTraining(new Training());
 	}
 	
+	public FileProcessor() {}
+	
 	
 	//Methods:
 	

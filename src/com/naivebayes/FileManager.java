@@ -19,41 +19,43 @@ public class FileManager extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 
+	FileProcessor fp;
 	JPanel header;
 	JLabel headerText;
 	JFileChooser fileChooser;
 	
 	public FileManager(String title)
 	 {
-		 super(title);
-		 setSize(550, 450);
-		 setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		 setLayout(new FlowLayout());
-		 setVisible(true);
-		 setLocationRelativeTo(null);
-		 setResizable(false);
+		super(title);
+		fp = new FileProcessor();
+		
+		setSize(550, 450);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLayout(new FlowLayout());
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setResizable(false);
+		
+		header = new JPanel();
+		header.setPreferredSize(new Dimension(550, 60));
+		header.setBackground(Color.cyan);
 		 
-		 header = new JPanel();
-		 header.setPreferredSize(new Dimension(550, 60));
-		 header.setBackground(Color.cyan);
+		headerText = new JLabel();
+		headerText.setText("File Manager");
+		headerText.setFont(new Font("", Font.PLAIN, 35));
 		 
-		 headerText = new JLabel();
-		 headerText.setText("File Manager");
-		 headerText.setFont(new Font("", Font.PLAIN, 35));
-		 
-		 FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
-		 fileChooser = new JFileChooser();
-		 fileChooser.addActionListener(this);
-		 fileChooser.setAcceptAllFileFilterUsed(false);
-		 fileChooser.setFileFilter(filter);
-		 
-		 add(header);
-		 header.add(headerText);
-		 add(fileChooser);
-		 
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
+		fileChooser = new JFileChooser();
+		fileChooser.addActionListener(this);
+		fileChooser.setAcceptAllFileFilterUsed(false);
+		fileChooser.setFileFilter(filter);
+		
+		add(header);
+		header.add(headerText);
+		add(fileChooser);
 	 }
 	
-	public void actionPerformed(ActionEvent actionEvent)
+	public void actionPerformed(ActionEvent actionEvent, FileProcessor fp)
 	{
 		String command = actionEvent.getActionCommand();
 		if (command.equals(JFileChooser.APPROVE_SELECTION))
