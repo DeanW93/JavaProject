@@ -12,7 +12,8 @@ package com.naivebayes;
 
 import java.util.ArrayList;
 
-public class Training {
+public class Training 
+{
 	
 	/*
 	 * 	Attributes:

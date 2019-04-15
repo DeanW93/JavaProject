@@ -7,17 +7,26 @@ import java.util.Scanner;
 public class FileProcessor
 {
 	private File DataSet;
-	Training training;
+	private Training training;
+	private Patient[] patients;
+	private int tonsillitis_count;
 	
 	public FileProcessor(String DataSet)
 	{
 		setDataSet(DataSet);
-		training = new Training();
+		setTraining(new Training());
 	}
 	
 	
 	//Methods:
 	
+	
+	/*
+	 * Check Data size method:
+	 * 
+	 * Description: Counts how many patient entries are in the given data set
+	 * 
+	 */
 	public int CheckDataSize()
 	{
 		int count_lines = 0;
@@ -53,7 +62,7 @@ public class FileProcessor
 	{
 		
 		
-		Patient[] patients = new Patient[CheckDataSize()];
+		patients = new Patient[CheckDataSize()];
 		
 		try 
 		{
@@ -65,9 +74,13 @@ public class FileProcessor
 			 * 
 			 * 		j variable: Index for patient list. This list contains each line as a patient object,
 			 * 					storing the relevant data in attributes for later use.
+			 * 
+			 * 		tonsillitis_count: Initializes a counter for the total number of patients with tonsillitis 
+			 * 							in the data set, used later in the NAive Bayes Algorithm
 			 */
 			int i=0;	
 			int j=0;
+			setTonsillitis_count(0);
 			
 			while(ReadData.hasNextLine()) 
 			{
@@ -200,6 +213,7 @@ public class FileProcessor
 							case "Yes":
 							{
 								patients[j].setTonsillitis(true);
+								setTonsillitis_count(getTonsillitis_count() + 1);
 								break;
 							}
 							case "yes":
@@ -253,30 +267,30 @@ public class FileProcessor
 					{
 						if(patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
-							training.hot.add(true);
+							getTraining().hot.add(true);
 						}
 						else if(patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
-							training.normal.add(true);
+							getTraining().normal.add(true);
 						}
 						else if(patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
-							training.cool.add(true);
+							getTraining().cool.add(true);
 						}
 					}
 					else
 					{
 						if(patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
-							training.hot.add(false);
+							getTraining().hot.add(false);
 						}
 						else if(patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
-							training.normal.add(false);
+							getTraining().normal.add(false);
 						}
 						else if(patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
-							training.cool.add(false);
+							getTraining().cool.add(false);
 						}
 					}
 					
@@ -285,22 +299,22 @@ public class FileProcessor
 					{
 						if(patients[j].isAches())							
 						{
-							training.ache.add(true);											//Patient has aches, HAS tonsillitis
+							getTraining().ache.add(true);											//Patient has aches, HAS tonsillitis
 						}
 						else
 						{
-							training.no_ache.add(true);										//Patient has no aches, HAS tonsillitis
+							getTraining().no_ache.add(true);										//Patient has no aches, HAS tonsillitis
 						}
 					}
 					else
 					{
 						if(patients[j].isAches())
 						{
-							training.ache.add(false);										//Patient has aches, NO tonsillitis
+							getTraining().ache.add(false);										//Patient has aches, NO tonsillitis
 						}
 						else
 						{
-							training.no_ache.add(false);										//Patient has no aches, NO tonsillitis
+							getTraining().no_ache.add(false);										//Patient has no aches, NO tonsillitis
 						}
 					}
 					
@@ -309,11 +323,11 @@ public class FileProcessor
 					{
 						if(patients[j].isSoreThroat())
 						{
-							training.sore.add(true);											//Patient has sore throat, HAS tonsillitis
+							getTraining().sore.add(true);											//Patient has sore throat, HAS tonsillitis
 						}
 						else
 						{
-							training.not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
+							getTraining().not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
 						}
 					}
 					else
@@ -321,11 +335,11 @@ public class FileProcessor
 						if(patients[j].isSoreThroat())
 						{
 							
-							training.sore.add(false);										//Patient has sore throat, NO tonsillitis
+							getTraining().sore.add(false);										//Patient has sore throat, NO tonsillitis
 						}
 						else
 						{
-							training.not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
+							getTraining().not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
 						}
 					}
 				}
@@ -361,5 +375,25 @@ public class FileProcessor
 	public void setDataSet(String DataSet)
 	{
 		this.DataSet = new File(DataSet);
+	}
+
+
+	public Training getTraining() {
+		return training;
+	}
+
+
+	public void setTraining(Training training) {
+		this.training = training;
+	}
+
+
+	public int getTonsillitis_count() {
+		return tonsillitis_count;
+	}
+
+
+	public void setTonsillitis_count(int tonsillitis_count) {
+		this.tonsillitis_count = tonsillitis_count;
 	}
 }
