@@ -61,7 +61,6 @@ public class FileManager extends JFrame implements ActionListener
 		if (command.equals(JFileChooser.APPROVE_SELECTION))
 		{
 			File selectedFile = fileChooser.getSelectedFile();
-			FileProcessor fp = new FileProcessor(selectedFile);
 			fp.ReadData();
 			JOptionPane.showMessageDialog(null, "File Processed!");
 		}
