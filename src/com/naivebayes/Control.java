@@ -17,14 +17,17 @@ public class Control
 	static Training training =  new Training();
 	//static Patient[] patients = new Patient[20];
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args)
 	{
 		
+//		
+//		FileProcessor fp = new FileProcessor("DataSet.txt");
+//		
+////		fp.ReadData();
+////		System.out.println(" \n\n" + fp.training.hot + " \n\n" + fp.training.normal + " \n\n" + fp.training.cool);
 		
-		FileProcessor fp = new FileProcessor("DataSet.txt");
-		
-		fp.ReadData();
-		System.out.println(" \n\n" + fp.training.hot + " \n\n" + fp.training.normal + " \n\n" + fp.training.cool);
+		MainMenu menu = new MainMenu("Display GUI");
 		
 	}
 

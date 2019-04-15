@@ -1,9 +1,10 @@
 package com.naivebayes;
 
-public class ProbabilityCalculator {
+public class ProbabilityCalculator extends Training {
 	
-	Training t_arrays;
-	Patient instance;
+	
+	Patient userinput;
+	
 	
 	
 	
