@@ -128,11 +128,17 @@ public class PatientEvaluation extends JFrame
 		 soreLabel = new JLabel();
 		 soreLabel.setText("Sore");
 		 
-		 yes = new JLabel();
-		 yes.setText("Yes: ");
+		 acheyes = new JLabel();
+		 acheyes.setText("Yes: ");
 		 
-		 no = new JLabel();
-		 no.setText("No: ");
+		 acheno = new JLabel();
+		 acheno.setText("No: ");
+		 
+		 soreyes = new JLabel();
+		 soreyes.setText("Yes: ");
+		 
+		 soreno = new JLabel();
+		 soreno.setText("No: ");
 		 
 		 submit = new JButton("Submit");
 		 
@@ -158,15 +164,15 @@ public class PatientEvaluation extends JFrame
 		 dataline4.add(acheLabel);
 		 
 		 add(dataline5);
-		 dataline5.add(yes);
-		 dataline5.add(no);
+		 dataline5.add(acheyes);
+		 dataline5.add(acheno);
 		 
 		 add(dataline6);
 		 dataline6.add(soreLabel);
 		 
 		 add(dataline7);
-		 dataline7.add(yes);
-		 dataline7.add(no);
+		 dataline7.add(soreyes);
+		 dataline7.add(soreno);
 		 
 		 add(dataline8);
 		 dataline8.add(submit);
