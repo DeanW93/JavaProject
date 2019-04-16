@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.border.SoftBevelBorder;
@@ -55,8 +56,6 @@ public class PatientEvaluation extends JFrame implements ActionListener
 	JCheckBox soreNobox;
 	
 	JButton submit;
-
-	private ActionListener e;
 
 	public PatientEvaluation(String title)
 	 {
@@ -149,22 +148,27 @@ public class PatientEvaluation extends JFrame implements ActionListener
 		 soreno.setText("No: ");
 		 
 		 submit = new JButton("Submit");
+		 submit.addActionListener(this);
 		 
 		 //CHECKBOXES
 		 hotbox = new JCheckBox();	 
-		 hotbox.addActionListener(e);
+		 hotbox.addActionListener(this);
 		 
 		 normbox = new JCheckBox();
-		 normbox.addActionListener(e);
+		 normbox.addActionListener(this);
 		 
 		 coolbox = new JCheckBox();
-		 coolbox.addActionListener(e);
+		 coolbox.addActionListener(this);
 		 
 		 acheYesbox = new JCheckBox();
+		 acheYesbox.addActionListener(this);
 		 acheNobox = new JCheckBox();
+		 acheNobox.addActionListener(this);
 		 
-		 soreYesbox = new JCheckBox();		 
+		 soreYesbox = new JCheckBox();
+		 soreYesbox.addActionListener(this);
 		 soreNobox = new JCheckBox();
+		 soreNobox.addActionListener(this);
 		 
 		 
 		 
@@ -221,32 +225,100 @@ public class PatientEvaluation extends JFrame implements ActionListener
 		
 		if(e.getSource() == hotbox)
 		{
-			
+			if(hotbox.isSelected())
+			{
+				normbox.setSelected(false);
+				coolbox.setSelected(false);
+			}
 		}
 		else if(e.getSource() == normbox)
 		{
-			
+			if(normbox.isSelected())
+			{
+				hotbox.setSelected(false);
+				coolbox.setSelected(false);
+			}
 		}
 		else if(e.getSource() == coolbox)
 		{
-			
+			if(coolbox.isSelected())
+			{
+				normbox.setSelected(false);
+				hotbox.setSelected(false);
+			}
 		}	
 		else if(e.getSource() == acheYesbox)
 		{
-			
+			if(acheYesbox.isSelected())
+			{
+				acheNobox.setSelected(false);
+			}
 		}
 		else if(e.getSource() == acheNobox)
 		{
-			
+			if(acheNobox.isSelected())
+			{
+				acheYesbox.setSelected(false);
+			}
 		}	
 		else if(e.getSource() == soreYesbox)
 		{
-			
+			if(soreYesbox.isSelected())
+			{
+				soreNobox.setSelected(false);
+			}
 		}
 		else if(e.getSource() == soreNobox)
 		{
+			if(soreNobox.isSelected())
+			{
+				soreYesbox.setSelected(false);
+			}
+		}
+		else if(e.getSource() == submit)
+		{
+			Patient patient = new Patient();
 			
-		}	
+			if(hotbox.isSelected())
+			{
+				patient.setTemperature("hot");
+			}
+			else if(normbox.isSelected())
+			{
+				patient.setTemperature("normal");
+			}
+			else if(coolbox.isSelected())
+			{
+				patient.setTemperature("cool");
+			}
+			
+			if(acheYesbox.isSelected())
+			{
+				patient.setAches(true);
+			}
+			else if(acheNobox.isSelected())
+			{
+				patient.setAches(false);
+			}
+			
+			if(soreYesbox.isSelected())
+			{
+				patient.setSoreThroat(true);
+			}
+			else if(soreNobox.isSelected())
+			{
+				patient.setSoreThroat(false);
+			}
+			
+			ProbabilityCalculator nb = new ProbabilityCalculator();
+
+			nb.NaiveBayesAlgorithm(patient, FileManager.fp.getTonsillitis_count(), FileManager.fp.getHot_count(), FileManager.fp.getNormal_count(), FileManager.fp.getCool_count(), FileManager.fp.getAche_count(), FileManager.fp.getNo_ache_count(), 
+											FileManager.fp.getSore_count(), FileManager.fp.getNot_sore_count(), FileManager.fp.CheckDataSize(), FileManager.fp.getTraining().hot, FileManager.fp.getTraining().normal, FileManager.fp.getTraining().cool, 
+											FileManager.fp.getTraining().ache, FileManager.fp.getTraining().no_ache, FileManager.fp.getTraining().sore, FileManager.fp.getTraining().not_sore);
+			
+			JOptionPane.showMessageDialog(null, "\n\n P(Tonsillitis | X) = " + nb.getPtonsillitis_given_instance()
+												+ "\n\n P(No Tonsillitis | X) = " + nb.getPno_tonsillitis_given_instance());
+		}
 	}
 	
 	

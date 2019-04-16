@@ -19,11 +19,11 @@ import javax.swing.border.EmptyBorder;
 public class GUI extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
-	JPanel header;
-	JLabel headerText;
-	JButton fileManagerButton;
-	JButton patientEvalButton;
-	JButton helpPageButton;
+	private JPanel header;
+	private JLabel headerText;
+	private JButton fileManagerButton;
+	static 	JButton patientEvalButton;
+	private JButton helpPageButton;
 	
 
 	public GUI(String title)
@@ -54,6 +54,7 @@ public class GUI extends JFrame implements ActionListener
 	    patientEvalButton.setPreferredSize(new Dimension(257, 40));
 	    patientEvalButton.setText("Patient Evaluation");
 	    patientEvalButton.addActionListener(this);
+	    patientEvalButton.setEnabled(false);
 	    
 	    helpPageButton = new JButton();
 	    helpPageButton.setPreferredSize(new Dimension(257, 40));
@@ -85,4 +86,5 @@ public class GUI extends JFrame implements ActionListener
 			 HelpPage hp = new HelpPage("Help Page");
 		 }
 	 }
+
 }

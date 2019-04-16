@@ -298,30 +298,30 @@ public class FileProcessor
 					{
 						if(patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
 						{
-							getTraining().hot.add(true);
+							Control.getTraining().hot.add(true);
 						}
 						else if(patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
 						{
-							getTraining().normal.add(true);
+							Control.getTraining().normal.add(true);
 						}
 						else if(patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
 						{
-							getTraining().cool.add(true);
+							Control.getTraining().cool.add(true);
 						}
 					}
 					else
 					{
 						if(patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
 						{
-							getTraining().hot.add(false);
+							Control.getTraining().hot.add(false);
 						}
 						else if(patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
 						{
-							getTraining().normal.add(false);
+							Control.getTraining().normal.add(false);
 						}
 						else if(patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
 						{
-							getTraining().cool.add(false);
+							Control.getTraining().cool.add(false);
 						}
 					}
 					
@@ -330,11 +330,11 @@ public class FileProcessor
 					{
 						if(patients[j].isAches())							
 						{
-							getTraining().ache.add(true);											//Patient has aches, HAS tonsillitis
+							Control.getTraining().ache.add(true);											//Patient has aches, HAS tonsillitis
 						}
 						else
 						{
-							getTraining().no_ache.add(true);										//Patient has no aches, HAS tonsillitis
+							Control.getTraining().no_ache.add(true);										//Patient has no aches, HAS tonsillitis
 						}
 					}
 					else

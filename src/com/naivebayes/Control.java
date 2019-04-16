@@ -14,8 +14,7 @@ import java.util.ArrayList;
 
 public class Control
 {
-	
-	static Training training =  new Training();
+	private static Training training =  new Training();
 	//static Patient[] patients = new Patient[20];
 	
 	@SuppressWarnings("unused")
@@ -41,4 +40,14 @@ public class Control
 //		System.out.println(" \n\n P(Tonsillitis | X) = " + nb.getPtonsillitis_given_instance());
 //		System.out.println(" \n\n P(No Tonsillitis | X) = " + nb.getPno_tonsillitis_given_instance());
 	}
+
+	public static Training getTraining() {
+		return training;
+	}
+
+	public static void setTraining(Training training) {
+		Control.training = training;
+	}
+
+
 }
