@@ -341,11 +341,11 @@ public class FileProcessor
 					{
 						if(patients[j].isAches())
 						{
-							getTraining().ache.add(false);										//Patient has aches, NO tonsillitis
+							Control.getTraining().ache.add(false);										//Patient has aches, NO tonsillitis
 						}
 						else
 						{
-							getTraining().no_ache.add(false);										//Patient has no aches, NO tonsillitis
+							Control.getTraining().no_ache.add(false);										//Patient has no aches, NO tonsillitis
 						}
 					}
 					
@@ -354,11 +354,11 @@ public class FileProcessor
 					{
 						if(patients[j].isSoreThroat())
 						{
-							getTraining().sore.add(true);											//Patient has sore throat, HAS tonsillitis
+							Control.getTraining().sore.add(true);											//Patient has sore throat, HAS tonsillitis
 						}
 						else
 						{
-							getTraining().not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
+							Control.getTraining().not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
 						}
 					}
 					else
@@ -366,11 +366,11 @@ public class FileProcessor
 						if(patients[j].isSoreThroat())
 						{
 							
-							getTraining().sore.add(false);										//Patient has sore throat, NO tonsillitis
+							Control.getTraining().sore.add(false);										//Patient has sore throat, NO tonsillitis
 						}
 						else
 						{
-							getTraining().not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
+							Control.getTraining().not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
 						}
 					}
 				}
