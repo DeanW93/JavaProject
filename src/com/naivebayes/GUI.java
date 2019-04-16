@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
@@ -23,7 +24,6 @@ public class GUI extends JFrame implements ActionListener
 	JButton fileManagerButton;
 	JButton patientEvalButton;
 	JButton helpPageButton;
-	JDialog fm_dialog;
 	
 
 	public GUI(String title)
@@ -72,7 +72,8 @@ public class GUI extends JFrame implements ActionListener
 	 {
 		 if(e.getSource() == fileManagerButton)
 		 {
-			 dialog
+			 JOptionPane.showMessageDialog(null, "Welcome to the data training window! Please use the slider to select the ratio of your dataset to train. "
+			 									+ "\n\n Remember! The remaining data will be used for self evaluation of the system.");
 			 FileManager fm = new FileManager("File Manager");
 		 }
 		 else if(e.getSource() == patientEvalButton)
