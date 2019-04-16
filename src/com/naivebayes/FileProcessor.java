@@ -6,15 +6,20 @@ import java.util.Scanner;
 
 public class FileProcessor
 {
+	//Training attributes
 	private File DataSet;
 	private Training training;
 	private Patient[] patients;
-	private int tonsillitis_count;
-	private int hot_count;
-	private int normal_count;
-	private int cool_count;
-	private int ache_count;
-	private int no_ache_count;
+	
+	//Symptom counters
+	private double tonsillitis_count;
+	private double hot_count;
+	private double normal_count;
+	private double cool_count;
+	private double ache_count;
+	private double no_ache_count;
+	private double sore_count;
+	private double not_sore_count;
 	
 	public FileProcessor(String DataSet)
 	{
@@ -41,9 +46,9 @@ public class FileProcessor
 	 * 
 	 */
 	
-	public int CheckDataSize()
+	public double CheckDataSize()
 	{
-		int count_lines = 0;
+		double count_lines = 0;
 		
 		try
 		{
@@ -76,7 +81,7 @@ public class FileProcessor
 	{
 		
 		
-		patients = new Patient[CheckDataSize()];
+		patients = new Patient[(int) CheckDataSize()];
 		
 		try 
 		{
@@ -124,17 +129,19 @@ public class FileProcessor
 							{
 								case "hot":
 								{
-									
+									hot_count++;
 									patients[j].setTemperature("hot");
 									break;
 								}
 								case "normal":
 								{	
+									normal_count++;
 									patients[j].setTemperature("normal");
 									break;
 								}	
 								case "cool":
 								{	
+									cool_count++;
 									patients[j].setTemperature("cool");
 									break;
 								}	
@@ -154,21 +161,25 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
+								ache_count++;
 								patients[j].setAches(true);
 								break;
 							}
 							case "yes":
 							{
+								ache_count++;
 								patients[j].setAches(true);
 								break;
 							}
 							case "No":
 							{	
+								no_ache_count++;
 								patients[j].setAches(false);
 								break;
 							}
 							case "no":
 							{	
+								no_ache_count++;
 								patients[j].setAches(false);
 								break;
 							}	
@@ -189,12 +200,14 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
+								setSore_count(getSore_count() + 1);
 								patients[j].setSoreThroat(true);
 								
 								break;
 							}
 							case "yes":
 							{
+								setSore_count(getSore_count() + 1);
 								patients[j].setSoreThroat(true);
 								
 								break;
@@ -202,11 +215,13 @@ public class FileProcessor
 							
 							case "No":
 							{	
+								setNot_sore_count(getNot_sore_count() + 1);
 								patients[j].setSoreThroat(false);
 								break;
 							}
 							case "no":
 							{	
+								setNot_sore_count(getNot_sore_count() + 1);
 								patients[j].setSoreThroat(false);
 								break;
 							}	
@@ -227,11 +242,13 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
+								tonsillitis_count++;
 								patients[j].setTonsillitis(true);
 								break;
 							}
 							case "yes":
 							{
+								tonsillitis_count++;
 								patients[j].setTonsillitis(true);
 								break;
 							}
@@ -407,52 +424,68 @@ public class FileProcessor
 	}
 
 
-	public int getTonsillitis_count() {
+	public double getTonsillitis_count() {
 		return tonsillitis_count;
 	}
 
 
-	public void setTonsillitis_count(int tonsillitis_count) {
+	public void setTonsillitis_count(double tonsillitis_count) {
 		this.tonsillitis_count = tonsillitis_count;
 	}
 
-	public int getHot_count() {
+	public double getHot_count() {
 		return hot_count;
 	}
 
-	public void setHot_count(int hot_count) {
+	public void setHot_count(double hot_count) {
 		this.hot_count = hot_count;
 	}
 
-	public int getNormal_count() {
+	public double getNormal_count() {
 		return normal_count;
 	}
 
-	public void setNormal_count(int normal_count) {
+	public void setNormal_count(double normal_count) {
 		this.normal_count = normal_count;
 	}
 
-	public int getCool_count() {
+	public double getCool_count() {
 		return cool_count;
 	}
 
-	public void setCool_count(int cool_count) {
+	public void setCool_count(double cool_count) {
 		this.cool_count = cool_count;
 	}
 
-	public int getAche_count() {
+	public double getAche_count() {
 		return ache_count;
 	}
 
-	public void setAche_count(int ache_count) {
+	public void setAche_count(double ache_count) {
 		this.ache_count = ache_count;
 	}
 
-	public int getNo_ache_count() {
+	public double getNo_ache_count() {
 		return no_ache_count;
 	}
 
-	public void setNo_ache_count(int no_ache_count) {
+	public void setNo_ache_count(double no_ache_count) {
 		this.no_ache_count = no_ache_count;
+	}
+
+	public double getSore_count() {
+		return sore_count;
+	}
+
+	public void setSore_count(double sore_count) {
+		this.sore_count = sore_count;
+	}
+
+	public double getNot_sore_count() {
+		return not_sore_count;
+	}
+
+	public void setNot_sore_count(double not_sore_count) {
+		this.not_sore_count = not_sore_count;
 	}
 }

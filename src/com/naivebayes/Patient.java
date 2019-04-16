@@ -18,7 +18,13 @@ public class Patient
 	private boolean soreThroat;
 	private boolean tonsillitis;
 	
-	public Patient(){}
+	public Patient() {};
+	public Patient(String temperature, boolean aches, boolean soreThroat)
+	{
+		this.temperature = temperature;
+		this.aches = aches;
+		this.soreThroat = soreThroat;
+	}
 	
 	public String getTemperature() {
 		return temperature;
