@@ -8,6 +8,7 @@ import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,6 +23,7 @@ public class GUI extends JFrame implements ActionListener
 	JButton fileManagerButton;
 	JButton patientEvalButton;
 	JButton helpPageButton;
+	JDialog fm_dialog;
 	
 
 	public GUI(String title)
@@ -45,7 +47,7 @@ public class GUI extends JFrame implements ActionListener
 	    
 	    fileManagerButton = new JButton();
 	    fileManagerButton.setPreferredSize(new Dimension(257, 40));
-	    fileManagerButton.setText("Read Dataset");
+	    fileManagerButton.setText("Train from Data Set");
 	    fileManagerButton.addActionListener(this);
 	    
 	    patientEvalButton = new JButton();
@@ -70,6 +72,7 @@ public class GUI extends JFrame implements ActionListener
 	 {
 		 if(e.getSource() == fileManagerButton)
 		 {
+			 dialog
 			 FileManager fm = new FileManager("File Manager");
 		 }
 		 else if(e.getSource() == patientEvalButton)

@@ -82,32 +82,29 @@ public class ProbabilityCalculator extends Training
 		p_yes = tonsillitis_count / num_of_patients;
 		p_no = (num_of_patients - tonsillitis_count) / num_of_patients;
 		
-		switch(patient.getTemperature())
+		if(patient.getTemperature() == "hot" | patient.getTemperature() == "Hot")
 		{
-			case "hot":
-			{
-				System.out.println(" \n\n  " + hot_count + ", " + num_of_patients + " ," + tonsillitis_count);
-				pinst_temp = hot_count / num_of_patients;
-				ptemp_yes = hot_with_tonsillitis(hotarray) / tonsillitis_count;
-				ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);
-				System.out.println(" \n\n  " + pinst_temp + ", " + ptemp_yes + ", " + ptemp_no);
-			}
-			case "normal":
-			{
-				pinst_temp = norm_count / num_of_patients;
-				ptemp_yes = normal_with_tonsillitis(normalarray) / tonsillitis_count;
-				ptemp_no = normal_without_tonsillitis(normalarray) / num_of_patients - tonsillitis_count;
-			}
-			case "cool":
-			{
-				pinst_temp = cool_count / num_of_patients;
-				ptemp_yes = cool_with_tonsillitis(coolarray) / tonsillitis_count;
-				ptemp_no = cool_without_tonsillitis(coolarray) / num_of_patients - tonsillitis_count;
-			}
-			default:
-			{
-				System.out.println("ERROR: Switch in NaiveBayes method not functional. ");
-			}
+			pinst_temp = hot_count / num_of_patients;
+			ptemp_yes = hot_with_tonsillitis(hotarray) / tonsillitis_count;
+			ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);	
+		}
+		else if(patient.getTemperature() == "normal" | patient.getTemperature() == "Normal")
+		{
+			System.out.println(" \n\n  NORMAL SWITCH ERROR");
+			pinst_temp = norm_count / num_of_patients;
+			ptemp_yes = normal_with_tonsillitis(normalarray) / tonsillitis_count;
+			ptemp_no = normal_without_tonsillitis(normalarray) / num_of_patients - tonsillitis_count;
+		}
+		else if(patient.getTemperature() == "cool" | patient.getTemperature() == "Cool")
+		{
+			System.out.println(" \n\n  COOL SWITCH ERROR");
+			pinst_temp = cool_count / num_of_patients;
+			ptemp_yes = cool_with_tonsillitis(coolarray) / tonsillitis_count;
+			ptemp_no = cool_without_tonsillitis(coolarray) / num_of_patients - tonsillitis_count;
+		}
+		else
+		{
+			System.out.println("ERROR: if() in NaiveBayes method not functional. ");
 		}
 		
 		if(patient.isAches())
@@ -118,22 +115,23 @@ public class ProbabilityCalculator extends Training
 		}
 		else
 		{
+			
 			pinst_ache = no_ache_count / num_of_patients;
 			pache_yes = no_ache_with_tonsillitis(no_achearray) / tonsillitis_count;
-			pache_no = no_ache_without_tonsillitis(no_achearray) / num_of_patients - tonsillitis_count;
+			pache_no = no_ache_without_tonsillitis(no_achearray) / (num_of_patients - tonsillitis_count);
 		}
 		
 		if(patient.isSoreThroat())
 		{
 			pinst_sore = sore_count / num_of_patients;
 			psore_yes = sore_with_tonsillitis(sorearray) / tonsillitis_count;
-			psore_yes = sore_without_tonsillitis(sorearray) / num_of_patients - tonsillitis_count;
+			psore_no = sore_without_tonsillitis(sorearray) / (num_of_patients - tonsillitis_count);	
 		}
 		else
 		{
 			pinst_sore = not_sore_count / num_of_patients;
 			psore_yes = not_sore_with_tonsillitis(not_sorearray) / tonsillitis_count;
-			psore_no = not_sore_without_tonsillitis(not_sorearray) / num_of_patients - tonsillitis_count;
+			psore_no = not_sore_without_tonsillitis(not_sorearray) / (num_of_patients - tonsillitis_count);
 		}
 		
 		
@@ -157,7 +155,6 @@ public class ProbabilityCalculator extends Training
 		
 		//P(No Tonsillitis | X) = [P(X | Tonsillitis = no)] * [P(tonsillitis = yes)] / P(X)
 		pno_tonsillitis_given_instance = pinstance_no / pinstance;
-		
 	}
 	
 	
@@ -166,9 +163,9 @@ public class ProbabilityCalculator extends Training
 	 * 	and how many times a symptom occurs WITHOUT tonsillitis. This data is used in the Naive Bayes algorithm in the instanceEvaluator method.
 	 */
 	
-	public int hot_with_tonsillitis(ArrayList<Boolean> hot)
+	public double hot_with_tonsillitis(ArrayList<Boolean> hot)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<hot.size() ; i++)
 		{
@@ -180,15 +177,14 @@ public class ProbabilityCalculator extends Training
 			{
 				
 			}
-			System.out.println(" \n\n counter is   " + counter);
 		}
 		
 		return counter;
 	}
 	
-	public int hot_without_tonsillitis(ArrayList<Boolean> hot)
+	public double hot_without_tonsillitis(ArrayList<Boolean> hot)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<hot.size() ; i++)
 		{
@@ -205,9 +201,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int cool_with_tonsillitis(ArrayList<Boolean> cool)
+	public double cool_with_tonsillitis(ArrayList<Boolean> cool)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<cool.size() ; i++)
 		{
@@ -225,9 +221,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int cool_without_tonsillitis(ArrayList<Boolean> cool)
+	public double cool_without_tonsillitis(ArrayList<Boolean> cool)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<cool.size() ; i++)
 		{
@@ -245,9 +241,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int normal_with_tonsillitis(ArrayList<Boolean> normal)
+	public double normal_with_tonsillitis(ArrayList<Boolean> normal)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<normal.size() ; i++)
 		{
@@ -265,9 +261,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int normal_without_tonsillitis(ArrayList<Boolean> normal)
+	public double normal_without_tonsillitis(ArrayList<Boolean> normal)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<normal.size() ; i++)
 		{
@@ -285,9 +281,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int ache_with_tonsillitis(ArrayList<Boolean> ache)
+	public double ache_with_tonsillitis(ArrayList<Boolean> ache)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<ache.size() ; i++)
 		{
@@ -305,9 +301,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int ache_without_tonsillitis(ArrayList<Boolean> ache)
+	public double ache_without_tonsillitis(ArrayList<Boolean> ache)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<ache.size() ; i++)
 		{
@@ -325,9 +321,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int no_ache_with_tonsillitis(ArrayList<Boolean> no_ache)
+	public double no_ache_with_tonsillitis(ArrayList<Boolean> no_ache)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<no_ache.size() ; i++)
 		{
@@ -345,9 +341,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int no_ache_without_tonsillitis(ArrayList<Boolean> no_ache)
+	public double no_ache_without_tonsillitis(ArrayList<Boolean> no_ache)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<no_ache.size() ; i++)
 		{
@@ -365,9 +361,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int sore_with_tonsillitis(ArrayList<Boolean> sore)
+	public double sore_with_tonsillitis(ArrayList<Boolean> sore)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<sore.size() ; i++)
 		{
@@ -385,9 +381,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int sore_without_tonsillitis(ArrayList<Boolean> sore)
+	public double sore_without_tonsillitis(ArrayList<Boolean> sore)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<sore.size() ; i++)
 		{
@@ -405,9 +401,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int not_sore_with_tonsillitis(ArrayList<Boolean> not_sore)
+	public double not_sore_with_tonsillitis(ArrayList<Boolean> not_sore)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<not_sore.size() ; i++)
 		{
@@ -425,9 +421,9 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
-	public int not_sore_without_tonsillitis(ArrayList<Boolean> not_sore)
+	public double not_sore_without_tonsillitis(ArrayList<Boolean> not_sore)
 	{
-		int counter = 0;
+		double counter = 0;
 		
 		for(int i=0 ; i<not_sore.size() ; i++)
 		{
