@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -13,7 +15,7 @@ import javax.swing.JPanel;
 
 import javax.swing.border.SoftBevelBorder;
 
-public class PatientEvaluation extends JFrame
+public class PatientEvaluation extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
@@ -54,6 +56,8 @@ public class PatientEvaluation extends JFrame
 	
 	JButton submit;
 
+	private ActionListener e;
+
 	public PatientEvaluation(String title)
 	 {
 		 super(title);
@@ -63,6 +67,8 @@ public class PatientEvaluation extends JFrame
 		 setVisible(true);
 		 setLocationRelativeTo(null);
 		 setResizable(false);
+		 
+		 //PANELS
 		 
 		 header = new JPanel();
 		 header.setPreferredSize(new Dimension(400, 60));
@@ -100,7 +106,9 @@ public class PatientEvaluation extends JFrame
 		 dataline8 = new JPanel();
 		 dataline8.setPreferredSize(new Dimension(400,40));
 		 dataline8.setBorder(new SoftBevelBorder(SoftBevelBorder.RAISED));
-		  
+		 
+		 
+		 //LABELS
 		 headerText = new JLabel();
 		 headerText.setText("Patient Evaluation");
 		 headerText.setFont(new Font("", Font.PLAIN, 35));
@@ -126,7 +134,7 @@ public class PatientEvaluation extends JFrame
 		 acheLabel.setText("Aches");
 		 
 		 soreLabel = new JLabel();
-		 soreLabel.setText("Sore");
+		 soreLabel.setText("Sore Throat");
 		 
 		 acheyes = new JLabel();
 		 acheyes.setText("Yes: ");
@@ -142,40 +150,104 @@ public class PatientEvaluation extends JFrame
 		 
 		 submit = new JButton("Submit");
 		 
+		 //CHECKBOXES
+		 hotbox = new JCheckBox();	 
+		 hotbox.addActionListener(e);
+		 
+		 normbox = new JCheckBox();
+		 normbox.addActionListener(e);
+		 
+		 coolbox = new JCheckBox();
+		 coolbox.addActionListener(e);
+		 
+		 acheYesbox = new JCheckBox();
+		 acheNobox = new JCheckBox();
+		 
+		 soreYesbox = new JCheckBox();		 
+		 soreNobox = new JCheckBox();
 		 
 		 
 		 
 		 
-		 add(header);
+		 
+		 
+		 //ADD COMPONENTS
+		 
+		 add(header);						//Page title
 		 header.add(headerText);
 		 
-		 add(dataline1);
+		 add(dataline1);					//Instructions
 		 dataline1.add(instructionsText);
 		 
-		 add(dataline2);
+		 add(dataline2);					//Temperature heading
 		 dataline2.add(tempLabel);
 		 
-		 add(dataline3);
+		 add(dataline3);					//Checkboxes with labels
 		 dataline3.add(hotLabel);
+		 dataline3.add(hotbox);
 		 dataline3.add(normalLabel);
+		 dataline3.add(normbox);
 		 dataline3.add(coolLabel);
+		 dataline3.add(coolbox);
 		 
-		 add(dataline4);
+		 add(dataline4);					//Ache heading
 		 dataline4.add(acheLabel);
 		 
-		 add(dataline5);
+		 add(dataline5);					//Checkboxes with labels
 		 dataline5.add(acheyes);
+		 dataline5.add(acheYesbox);
 		 dataline5.add(acheno);
+		 dataline5.add(acheNobox);
 		 
-		 add(dataline6);
+		 add(dataline6);					//Sore heading
 		 dataline6.add(soreLabel);
 		 
-		 add(dataline7);
+		 add(dataline7);					//Checkboxes with labels
 		 dataline7.add(soreyes);
+		 dataline7.add(soreYesbox);
 		 dataline7.add(soreno);
+		 dataline7.add(soreNobox);
 		 
-		 add(dataline8);
+		 add(dataline8);					//Submit data button
 		 dataline8.add(submit);
 		 
 	 }
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) 
+	{
+		// TODO Auto-generated method stub
+		
+		if(e.getSource() == hotbox)
+		{
+			
+		}
+		else if(e.getSource() == normbox)
+		{
+			
+		}
+		else if(e.getSource() == coolbox)
+		{
+			
+		}	
+		else if(e.getSource() == acheYesbox)
+		{
+			
+		}
+		else if(e.getSource() == acheNobox)
+		{
+			
+		}	
+		else if(e.getSource() == soreYesbox)
+		{
+			
+		}
+		else if(e.getSource() == soreNobox)
+		{
+			
+		}	
+	}
+	
+	
 }
