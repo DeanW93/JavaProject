@@ -200,14 +200,14 @@ public class FileProcessor
 						{
 							case "Yes":
 							{
-								setSore_count(getSore_count() + 1);
+								sore_count++;
 								patients[j].setSoreThroat(true);
 								
 								break;
 							}
 							case "yes":
 							{
-								setSore_count(getSore_count() + 1);
+								sore_count++;
 								patients[j].setSoreThroat(true);
 								
 								break;
@@ -215,13 +215,13 @@ public class FileProcessor
 							
 							case "No":
 							{	
-								setNot_sore_count(getNot_sore_count() + 1);
+								not_sore_count++;
 								patients[j].setSoreThroat(false);
 								break;
 							}
 							case "no":
 							{	
-								setNot_sore_count(getNot_sore_count() + 1);
+								not_sore_count++;
 								patients[j].setSoreThroat(false);
 								break;
 							}	
@@ -388,6 +388,16 @@ public class FileProcessor
 			
 			
 			ReadData.close();
+			System.out.println("\n\nData processed as follows:"
+								+ "\n\nhot count: " + hot_count
+								+ "\nnormalcount: " + normal_count
+								+ "\ncool count: " + cool_count
+								+ "\nache count: " + ache_count
+								+ "\nno ache count: " + no_ache_count
+								+ "\nsore count: " + sore_count
+								+ "\nnot sore count: " + not_sore_count
+								
+								+ "\ntonsillitis count: " + tonsillitis_count);
 		}
 		catch (FileNotFoundException e) 
 		{

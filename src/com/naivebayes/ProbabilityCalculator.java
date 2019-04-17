@@ -92,13 +92,13 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_temp = norm_count / num_of_patients;														//P(normal)
 			ptemp_yes = normal_with_tonsillitis(normalarray) / tonsillitis_count;							//P(normal w/ tonsillitis)
-			ptemp_no = normal_without_tonsillitis(normalarray) / num_of_patients - tonsillitis_count;		//P(normal w/o tomsillitis)
+			ptemp_no = normal_without_tonsillitis(normalarray) / (num_of_patients - tonsillitis_count);		//P(normal w/o tomsillitis)
 		}
 		else if(patient.getTemperature() == "cool" | patient.getTemperature() == "Cool")
 		{
 			pinst_temp = cool_count / num_of_patients;														//P(cool)
 			ptemp_yes = cool_with_tonsillitis(coolarray) / tonsillitis_count;								//P(cool w/ tonsillitis)
-			ptemp_no = cool_without_tonsillitis(coolarray) / num_of_patients - tonsillitis_count;			//P(cool w/o tonsillitis)
+			ptemp_no = cool_without_tonsillitis(coolarray) / (num_of_patients - tonsillitis_count);			//P(cool w/o tonsillitis)
 		}
 		else
 		{
@@ -109,7 +109,7 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_ache = ache_count / num_of_patients;														//P(aches)
 			pache_yes = ache_with_tonsillitis(achearray) / tonsillitis_count;								//P(aches w/ tonsillitis)
-			pache_no = ache_without_tonsillitis(achearray) / num_of_patients - tonsillitis_count; 			//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			pache_no = ache_without_tonsillitis(achearray) / (num_of_patients - tonsillitis_count); 			//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 		else
 		{
