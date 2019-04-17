@@ -313,8 +313,8 @@ public class PatientEvaluation extends JFrame implements ActionListener
 			ProbabilityCalculator nb = new ProbabilityCalculator();
 
 			nb.NaiveBayesAlgorithm(patient, FileManager.fp.getTonsillitis_count(), FileManager.fp.getHot_count(), FileManager.fp.getNormal_count(), FileManager.fp.getCool_count(), FileManager.fp.getAche_count(), FileManager.fp.getNo_ache_count(), 
-											FileManager.fp.getSore_count(), FileManager.fp.getNot_sore_count(), FileManager.fp.CheckDataSize(), FileManager.fp.getTraining().hot, FileManager.fp.getTraining().normal, FileManager.fp.getTraining().cool, 
-											FileManager.fp.getTraining().ache, FileManager.fp.getTraining().no_ache, FileManager.fp.getTraining().sore, FileManager.fp.getTraining().not_sore);
+											FileManager.fp.getSore_count(), FileManager.fp.getNot_sore_count(), FileManager.fp.CheckDataSize(), Control.getTraining().hot, Control.getTraining().normal, Control.getTraining().cool, 
+											Control.getTraining().ache, Control.getTraining().no_ache, Control.getTraining().sore, Control.getTraining().not_sore);
 			
 			JOptionPane.showMessageDialog(null, "\n\n P(Tonsillitis | X) = " + nb.getPtonsillitis_given_instance()
 												+ "\n\n P(No Tonsillitis | X) = " + nb.getPno_tonsillitis_given_instance());

@@ -79,59 +79,57 @@ public class ProbabilityCalculator extends Training
 															ArrayList<Boolean> normalarray, ArrayList<Boolean> coolarray, ArrayList<Boolean> achearray, ArrayList<Boolean> no_achearray, 
 																ArrayList<Boolean> sorearray, ArrayList<Boolean> not_sorearray)
 	{
-		p_yes = tonsillitis_count / num_of_patients;
-		p_no = (num_of_patients - tonsillitis_count) / num_of_patients;
+		p_yes = tonsillitis_count / num_of_patients;														// P(tonsillitis)
+		p_no = (num_of_patients - tonsillitis_count) / num_of_patients;										// P(no tonsillitis)
 		
 		if(patient.getTemperature() == "hot" | patient.getTemperature() == "Hot")
 		{
-			pinst_temp = hot_count / num_of_patients;
-			ptemp_yes = hot_with_tonsillitis(hotarray) / tonsillitis_count;
-			ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);	
+			pinst_temp = hot_count / num_of_patients;														//P(hot)
+			ptemp_yes = hot_with_tonsillitis(hotarray) / tonsillitis_count;									//P(hot w/ tonsillitis)
+			ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);			//P(normal w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 		else if(patient.getTemperature() == "normal" | patient.getTemperature() == "Normal")
 		{
-			System.out.println(" \n\n  NORMAL SWITCH ERROR");
-			pinst_temp = norm_count / num_of_patients;
-			ptemp_yes = normal_with_tonsillitis(normalarray) / tonsillitis_count;
-			ptemp_no = normal_without_tonsillitis(normalarray) / num_of_patients - tonsillitis_count;
+			pinst_temp = norm_count / num_of_patients;														//P(normal)
+			ptemp_yes = normal_with_tonsillitis(normalarray) / tonsillitis_count;							//P(normal w/ tonsillitis)
+			ptemp_no = normal_without_tonsillitis(normalarray) / num_of_patients - tonsillitis_count;		//P(normal w/o tomsillitis)
 		}
 		else if(patient.getTemperature() == "cool" | patient.getTemperature() == "Cool")
 		{
-			System.out.println(" \n\n  COOL SWITCH ERROR");
-			pinst_temp = cool_count / num_of_patients;
-			ptemp_yes = cool_with_tonsillitis(coolarray) / tonsillitis_count;
-			ptemp_no = cool_without_tonsillitis(coolarray) / num_of_patients - tonsillitis_count;
+			pinst_temp = cool_count / num_of_patients;														//P(cool)
+			ptemp_yes = cool_with_tonsillitis(coolarray) / tonsillitis_count;								//P(cool w/ tonsillitis)
+			ptemp_no = cool_without_tonsillitis(coolarray) / num_of_patients - tonsillitis_count;			//P(cool w/o tonsillitis)
 		}
 		else
 		{
-			System.out.println("ERROR: if() in NaiveBayes method not functional. ");
+			System.out.println("ERROR: if() in NaiveBayes method not functional. ");					
 		}
 		
 		if(patient.isAches())
 		{
-			pinst_ache = ache_count / num_of_patients;
-			pache_yes = ache_with_tonsillitis(achearray) / tonsillitis_count;
-			pache_no = ache_without_tonsillitis(achearray) / num_of_patients - tonsillitis_count;
+			pinst_ache = ache_count / num_of_patients;														//P(aches)
+			pache_yes = ache_with_tonsillitis(achearray) / tonsillitis_count;								//P(aches w/ tonsillitis)
+			pache_no = ache_without_tonsillitis(achearray) / num_of_patients - tonsillitis_count; 			//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 		else
 		{
 			
-			pinst_ache = no_ache_count / num_of_patients;
-			pache_yes = no_ache_with_tonsillitis(no_achearray) / tonsillitis_count;
-			pache_no = no_ache_without_tonsillitis(no_achearray) / (num_of_patients - tonsillitis_count);
+			pinst_ache = no_ache_count / num_of_patients;													//P(no ache)
+			pache_yes = no_ache_with_tonsillitis(no_achearray) / tonsillitis_count;							//P(no ache w/ tonsillitis)
+			pache_no = no_ache_without_tonsillitis(no_achearray) / (num_of_patients - tonsillitis_count);	//P(no ache w/o tonsillitis)
 		}
 		
 		if(patient.isSoreThroat())
 		{
-			pinst_sore = sore_count / num_of_patients;
-			psore_yes = sore_with_tonsillitis(sorearray) / tonsillitis_count;
-			psore_no = sore_without_tonsillitis(sorearray) / (num_of_patients - tonsillitis_count);	
+			pinst_sore = sore_count / num_of_patients;														//P(sore throat)
+			psore_yes = sore_with_tonsillitis(sorearray) / tonsillitis_count;								//P(sore throat w/ tonsillitis)
+			psore_no = sore_without_tonsillitis(sorearray) / (num_of_patients - tonsillitis_count);			//P(sore throat w/o tonsillitis)				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
-		else
+		else 
 		{
-			pinst_sore = not_sore_count / num_of_patients;
-			psore_yes = not_sore_with_tonsillitis(not_sorearray) / tonsillitis_count;
-			psore_no = not_sore_without_tonsillitis(not_sorearray) / (num_of_patients - tonsillitis_count);
+			pinst_sore = not_sore_count / num_of_patients;													//P(no sore throat)
+			psore_yes = not_sore_with_tonsillitis(not_sorearray) / tonsillitis_count;						//P(no sore throat w/ tonsillitis)
+			psore_no = not_sore_without_tonsillitis(not_sorearray) / (num_of_patients - tonsillitis_count);	//P(no sore throat w/o tonsillitis)
 		}
 		
 		

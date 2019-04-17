@@ -92,9 +92,9 @@ public class FileManager extends JFrame implements ActionListener
 			File selectedFile = fileChooser.getSelectedFile();
 			fp.setDataSet(selectedFile);
 			fp.ReadData();
-			System.out.println(" \n\nHOT =>" + fp.getTraining().hot + " \n\nNORMAL =>" + fp.getTraining().normal + " \n\nCOOL =>" + fp.getTraining().cool);
-			System.out.println(" \n\nACHE =>" + fp.getTraining().ache + " \n\n NO ACHE =>" + fp.getTraining().no_ache);
-			System.out.println(" \n\nSORE =>" + fp.getTraining().sore + " \n\n NOT SORE =>" + fp.getTraining().not_sore);
+			System.out.println(" \n\nHOT =>" + Control.getTraining().hot + " \n\nNORMAL =>" + Control.getTraining().normal + " \n\nCOOL =>" + Control.getTraining().cool);
+			System.out.println(" \n\nACHE =>" + Control.getTraining().ache + " \n\n NO ACHE =>" + Control.getTraining().no_ache);
+			System.out.println(" \n\nSORE =>" + Control.getTraining().sore + " \n\n NOT SORE =>" + Control.getTraining().not_sore);
 					
 			JOptionPane.showMessageDialog(null, "File Processed!");
 		}

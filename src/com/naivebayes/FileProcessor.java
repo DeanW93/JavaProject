@@ -57,7 +57,7 @@ public class FileProcessor
 			{
 				System.out.println(ReadData.nextLine());
 				count_lines++;
-				System.out.println("line " + count_lines + " added...");
+				System.out.println("\n\nline " + count_lines + " counted...");
 			}
 			ReadData.close();
 		} 
