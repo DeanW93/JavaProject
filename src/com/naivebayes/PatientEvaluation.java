@@ -6,6 +6,8 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -20,6 +22,7 @@ public class PatientEvaluation extends JFrame implements ActionListener
 {
 	private static final long serialVersionUID = 1L;
 	
+	//Panels
 	JPanel header;
 	JPanel dataline1;
 	JPanel dataline2;
@@ -30,23 +33,27 @@ public class PatientEvaluation extends JFrame implements ActionListener
 	JPanel dataline7;
 	JPanel dataline8;
 	
+	//Labels
 	JLabel headerText;
 	JLabel instructionsText;
 	
+	//Temperature
 	JLabel tempLabel;
 	JLabel hotLabel;
 	JLabel normalLabel;
 	JLabel coolLabel;
 	
+	//Ache
 	JLabel acheLabel;
 	JLabel acheyes;
 	JLabel acheno;
 	
+	//Sore
 	JLabel soreLabel;
 	JLabel soreyes;
 	JLabel soreno;
 	
-	
+	//Checkboxes
 	JCheckBox hotbox;
 	JCheckBox normbox;
 	JCheckBox coolbox;
@@ -55,6 +62,7 @@ public class PatientEvaluation extends JFrame implements ActionListener
 	JCheckBox soreYesbox;
 	JCheckBox soreNobox;
 	
+	//Submit button
 	JButton submit;
 
 	public PatientEvaluation(String title)
@@ -315,9 +323,12 @@ public class PatientEvaluation extends JFrame implements ActionListener
 			nb.NaiveBayesAlgorithm(patient, FileManager.fp.getTonsillitis_count(), FileManager.fp.getHot_count(), FileManager.fp.getNormal_count(), FileManager.fp.getCool_count(), FileManager.fp.getAche_count(), FileManager.fp.getNo_ache_count(), 
 											FileManager.fp.getSore_count(), FileManager.fp.getNot_sore_count(), FileManager.fp.CheckDataSize(), Control.getTraining().hot, Control.getTraining().normal, Control.getTraining().cool, 
 											Control.getTraining().ache, Control.getTraining().no_ache, Control.getTraining().sore, Control.getTraining().not_sore);
+			//Used to round probabilities
+			DecimalFormat df = new DecimalFormat("#.##");
+			df.setRoundingMode(RoundingMode.CEILING);
 			
-			JOptionPane.showMessageDialog(null, "\n\n P(Tonsillitis | X) = " + nb.getPtonsillitis_given_instance()
-												+ "\n\n P(No Tonsillitis | X) = " + nb.getPno_tonsillitis_given_instance());
+			JOptionPane.showMessageDialog(null, "\n\n Final Posterior Probability of tonsillitis with given symptoms is " + df.format(nb.getPtonsillitis_given_instance() * 100) + "%"
+												+ "\n\n Final Posterior Probability of no tonsillitis with given symptoms is " + df.format(nb.getPno_tonsillitis_given_instance() * 100) + "%");
 		}
 	}
 	

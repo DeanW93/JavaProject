@@ -47,7 +47,7 @@ public class GUI extends JFrame implements ActionListener
 	    
 	    fileManagerButton = new JButton();
 	    fileManagerButton.setPreferredSize(new Dimension(257, 40));
-	    fileManagerButton.setText("Train from Data Set");
+	    fileManagerButton.setText("Train New Data Set");
 	    fileManagerButton.addActionListener(this);
 	    
 	    patientEvalButton = new JButton();
@@ -75,6 +75,7 @@ public class GUI extends JFrame implements ActionListener
 		 {
 			 JOptionPane.showMessageDialog(null, "Welcome to the data training window! Please use the slider to select the ratio of your dataset to train. "
 			 									+ "\n\n Remember! The remaining data will be used for self evaluation of the system.");
+			 
 			 FileManager fm = new FileManager("File Manager");
 		 }
 		 else if(e.getSource() == patientEvalButton)

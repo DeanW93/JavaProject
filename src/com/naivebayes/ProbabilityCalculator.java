@@ -65,6 +65,7 @@ public class ProbabilityCalculator extends Training
 	private double pinst_temp;
 	private double pinst_ache;
 	private double pinst_sore;
+	
 	private double ptonsillitis_given_instance;
 	private double pno_tonsillitis_given_instance;
 	
@@ -109,7 +110,7 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_ache = ache_count / num_of_patients;														//P(aches)
 			pache_yes = ache_with_tonsillitis(achearray) / tonsillitis_count;								//P(aches w/ tonsillitis)
-			pache_no = ache_without_tonsillitis(achearray) / (num_of_patients - tonsillitis_count); 			//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			pache_no = ache_without_tonsillitis(achearray) / (num_of_patients - tonsillitis_count); 		//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		}
 		else
 		{
@@ -140,6 +141,7 @@ public class ProbabilityCalculator extends Training
 		 * [P(X | tonsillitis = yes)] * [(P(tonsillitis)]
 		 * 
 		 */
+		
 		pinstance_yes = ptemp_yes * pache_yes * psore_yes * p_yes;
 		
 		//P(X | tonsillitis = no) * (P(tonsillitis)
@@ -148,17 +150,17 @@ public class ProbabilityCalculator extends Training
 		//P(X)
 		pinstance = pinst_temp * pinst_ache * pinst_sore;
 		
-		//P(Tonsillitis | X) = [P(X | Tonsillitis = yes)] * [P(tonsillitis = yes)] / P(X)
-		ptonsillitis_given_instance = pinstance_yes / pinstance;
+		//P(Tonsillitis | X) = [P(X | Tonsillitis = yes)] * [P(tonsillitis = yes)]
+		ptonsillitis_given_instance = (pinstance_yes)/(pinstance_yes + pinstance_no);
 		
-		//P(No Tonsillitis | X) = [P(X | Tonsillitis = no)] * [P(tonsillitis = yes)] / P(X)
-		pno_tonsillitis_given_instance = pinstance_no / pinstance;
+		//P(No Tonsillitis | X) = [P(X | Tonsillitis = no)] * [P(tonsillitis = yes)]
+		pno_tonsillitis_given_instance = (pinstance_no)/(pinstance_no + pinstance_yes);
 	}
 	
 	
 	/*
 	 * 	The methods below use for loops to step through the training data and count how many times a given symptom occurs WITH tonsillitis
-	 * 	and how many times a symptom occurs WITHOUT tonsillitis. This data is used in the Naive Bayes algorithm in the instanceEvaluator method.
+	 * 	and how many times a symptom occurs WITHOUT tonsillitis. This data is used in the NaiveBayesAlgorithm() method.
 	 */
 	
 	public double hot_with_tonsillitis(ArrayList<Boolean> hot)
