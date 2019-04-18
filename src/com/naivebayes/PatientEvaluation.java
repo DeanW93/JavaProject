@@ -64,7 +64,8 @@ public class PatientEvaluation extends JFrame implements ActionListener
 	
 	//Submit button
 	JButton submit;
-
+	
+	//Page constructor
 	public PatientEvaluation(String title)
 	 {
 		 super(title);
@@ -231,6 +232,19 @@ public class PatientEvaluation extends JFrame implements ActionListener
 	{
 		// TODO Auto-generated method stub
 		
+		/*
+		 * Series of if() statements ensure:
+		 * 
+		 * - Only one box is ticked per Symptom at a given time.
+		 * 
+		 * - When submit is pressed, symptoms given are stored in a patient object and the posterior probability of patient 
+		 * 	 having tonsillitis well as posterior probability of patient not having tonsillitis is displayed as a percentage
+		 * 	 rounded to two decimal places.
+		 * 
+		 * - The probability calculator object uses the NaiveBayesAlgorithm() method to perform the final calculations using 
+		 * 	 the data processed from the dataset
+		 * 
+		 */
 		if(e.getSource() == hotbox)
 		{
 			if(hotbox.isSelected())
@@ -318,8 +332,10 @@ public class PatientEvaluation extends JFrame implements ActionListener
 				patient.setSoreThroat(false);
 			}
 			
+			//Object used to calculate probabilities
 			ProbabilityCalculator nb = new ProbabilityCalculator();
-
+			
+			//Calls method of probability calculator to perform operations
 			nb.NaiveBayesAlgorithm(patient, FileManager.fp.getTonsillitis_count(), FileManager.fp.getHot_count(), FileManager.fp.getNormal_count(), FileManager.fp.getCool_count(), FileManager.fp.getAche_count(), FileManager.fp.getNo_ache_count(), 
 											FileManager.fp.getSore_count(), FileManager.fp.getNot_sore_count(), FileManager.fp.CheckDataSize(), Control.getTraining().hot, Control.getTraining().normal, Control.getTraining().cool, 
 											Control.getTraining().ache, Control.getTraining().no_ache, Control.getTraining().sore, Control.getTraining().not_sore);

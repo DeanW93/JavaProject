@@ -1,14 +1,9 @@
 package com.naivebayes;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class ProbabilityCalculator extends Training
 {
-	
-	
-	private Patient userinput;
-	private File DataSet;
 	
 	/*
 	 * Probability Variables
