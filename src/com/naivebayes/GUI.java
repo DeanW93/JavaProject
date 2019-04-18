@@ -80,11 +80,12 @@ public class GUI extends JFrame implements ActionListener
 		 //Access file browser window for selecting dataset tp train
 		 if(e.getSource() == fileManagerButton)
 		 {
-			 JOptionPane.showMessageDialog(null, "Welcome to the Data Training Window! Please use the slider to select the ratio of your dataset to train. "
+			 JOptionPane.showMessageDialog(null, "Welcome to the Data Training Window! Please use the slider to select the percentage of your dataset to train. "
 			 									+ "\n\n NOTE: "
 			 									+ "\n\n- The remaining data will be used for self evaluation of the system."
+			 									+ "\n- The percentage of dataset to be trained will be rounded to the nearest whole number of lines to be trained."
 					 							+ "\n- You may process multiple files, data will be added each time a file is processed."
-					 							+ "\n- Yjou MUST restart the program to clear the dataset.");
+					 							+ "\n- You MUST restart the program to clear the dataset.");
 			 
 			 @SuppressWarnings("unused")
 			FileManager fm = new FileManager("File Manager");

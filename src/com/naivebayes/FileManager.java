@@ -36,11 +36,12 @@ public class FileManager extends JFrame implements ActionListener
 	JSlider slider;
 	
 	
+	
+
 	//Page constructor
 	public FileManager(String title)
 	 {
 		super(title);
-		fp = new FileProcessor();
 		
 		//Page properties
 		setSize(550, 500);
@@ -80,6 +81,7 @@ public class FileManager extends JFrame implements ActionListener
 	    slider.setMinorTickSpacing(5);
 	    slider.setPaintLabels(true);
 	    slider.setLabelTable(labels);
+	    slider.setValue(100);
 		
 	    //File chooser
 		FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
@@ -89,7 +91,7 @@ public class FileManager extends JFrame implements ActionListener
 		fileChooser.setFileFilter(filter);
 		
 		//File processor object
-		fp = new FileProcessor();
+		fp = new FileProcessor(100);
 		
 		
 		//Add components
@@ -110,6 +112,7 @@ public class FileManager extends JFrame implements ActionListener
 		{
 			GUI.patientEvalButton.setEnabled(true);
 			File selectedFile = fileChooser.getSelectedFile();
+			fp.setRatio(slider.getValue());
 			fp.setDataSet(selectedFile);
 			fp.ReadData();
 			System.out.println(" \n\nHOT =>" + Control.getTraining().hot + " \n\nNORMAL =>" + Control.getTraining().normal + " \n\nCOOL =>" + Control.getTraining().cool);
@@ -124,6 +127,5 @@ public class FileManager extends JFrame implements ActionListener
 			hide();
 		}
 	}
-
 }
 
