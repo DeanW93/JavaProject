@@ -19,6 +19,7 @@ public class Control
 {
 	//Training data object
 	private static Training training =  new Training();
+	//private static Training eval_training = new Training();
 	
 	
 	//GUI main menu interface
@@ -32,13 +33,25 @@ public class Control
 	
 	//Training getters and setters
 	
-	public static Training getTraining() {
+	public static Training getTraining() 
+	{
 		return training;
 	}
 
-	public static void setTraining(Training training) {
+	public static void setTraining(Training training) 
+	{
 		Control.training = training;
 	}
+	
+//	public static Training getEvalTraining() 
+//	{
+//		return eval_training;
+//	}
+//
+//	public static void setEvalTraining(Training eval_training)
+//	{
+//		Control.eval_training = eval_training;
+//	}
 
 
 }

@@ -18,9 +18,10 @@ import javax.swing.JPanel;
 
 import javax.swing.border.SoftBevelBorder;
 
+@SuppressWarnings("serial")
 public class PatientEvaluation extends JFrame implements ActionListener
 {
-	private static final long serialVersionUID = 1L;
+	
 	
 	//Panels
 	JPanel header;

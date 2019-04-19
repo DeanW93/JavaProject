@@ -11,10 +11,10 @@ public class FileProcessor
 	
 	//Training attributes
 	private File DataSet;
-	private Training training;
 	private Patient[] patients;
 	private Patient[] eval_patients;
-	
+
+
 	//Symptom counter attributes
 	private double tonsillitis_count;
 	private double hot_count;
@@ -75,16 +75,20 @@ public class FileProcessor
 	public void ReadData()
 	{
 		
-		
-		double trainingListSize = (CheckDataSize()/100)*ratio ;
 		double dataListSize = CheckDataSize();
+		double trainingListSize = (dataListSize/100)*ratio ;
+	
 		int evaluationSetSize = (int) (dataListSize - Math.round(trainingListSize));
+		
+		System.out.println("\n\nratio = " + ratio + " trainingListSize: " + trainingListSize + " dataListSize: " + dataListSize + " eval set size: " + evaluationSetSize + " rounded TLSize: " + Math.round(trainingListSize) );
 		
 		//Training data patients
 		patients = new Patient[(int) Math.round(trainingListSize)];
 		
 		//Self evaluation patients
 		eval_patients = new Patient[evaluationSetSize];
+		
+		System.out.println("\n\npatients.length = " + patients.length);
 		
 		try 
 		{
@@ -105,8 +109,8 @@ public class FileProcessor
 			int j=0;
 			setTonsillitis_count(0);
 			
-			while(j<trainingListSize) 
-			{
+			while(j < patients.length) //Trains data up to the size specified by the user, percentage calculated above.
+ 			{
 				
 				if(i > 3)
 				{
@@ -118,7 +122,7 @@ public class FileProcessor
 				if(i == 0)
 				{
 					
-					System.out.println("Creating patient...");
+					System.out.println("\nCreating training patient...");
 					patients[j] = new Patient();
 				}
 				
@@ -381,7 +385,7 @@ public class FileProcessor
 				
 				if(i > 2)
 				{
-					System.out.println(patients[j].getTemperature() + " " + patients[j].isAches() + " " + patients[j].isSoreThroat() + " " + patients[j].isTonsillitis() );
+					System.out.println(patients[j].getTemperature() + " " + patients[j].isAches() + " " + patients[j].isSoreThroat() + " " + patients[j].isTonsillitis() + "\n" );
 					j++;
 				}
 				i++;
@@ -426,36 +430,48 @@ public class FileProcessor
 				 * 					if index is on a temperature token, i will be 0, thus the temperature 
 				 * 					case will be active within that iteration of the while loop below.
 				 * 
-				 * 		j variable: Index for populating patient list and iterating through the while loop 
-				 * 					based on percentage of data to be trained. The patient list contains each 
-				 * 					line as a patient object, storing the relevant data in attributes for later use.		
+				 * 		j variable: j in this instance is used to ensure we skip the training data used in the file
+				 * 					to get to the evaluation portion of the patient dataset specified by the user using 
+				 * 					the slider.	
+				 * 
+				 * 		e variable: Index for populating eval_patient array.	
 				 * 
 				 * 		tonsillitis_count: Initializes a counter for the total number of patients with tonsillitis 
 				 * 							in the data set, used later in the NAive Bayes Algorithm
 				 */
+				boolean firstRun = true;
 				int i=0;
 				int j=0;
+				int e=0;
 						
-				while(ReadData.hasNextLine()) 
+				while(ReadData.hasNextLine()) //Uses remaining data to self evaluate 
 				{
 					
+					//Points i to the first token, to be stored in eval_patients[i]
 					if(i > 3)
 					{
 						i = 0;
 					}
 					
 					
-					
-					if(i == 0)
+					//Creates a patient for each new line, first token
+					if(i > 2 && j >= patients.length)
 					{
+						if (!firstRun)
+						{
+							e++; //new patient index
+						}
+						firstRun = false;
+						System.out.println("\nCreating eval patient " + e + "...");
+						eval_patients[e] = new Patient();
 						
-						System.out.println("Creating patient...");
-						patients[j] = new Patient();
 					}
 					
+					System.out.println("\n" + "\nChecking line: " + j);
 					
-					if(j > trainingListSize)
+					if(j >= patients.length)
 					{
+						//check symptoms on each line and store in a patient object
 						switch(i)
 						{
 							//Temperature check
@@ -465,20 +481,19 @@ public class FileProcessor
 									{
 										case "hot":
 										{
-											hot_count++;
-											patients[j].setTemperature("hot");
+											System.out.println(eval_patients[e] + "exists?: " + eval_patients[e].toString());
+											eval_patients[e].setTemperature("hot");
+											
 											break;
 										}
 										case "normal":
 										{	
-											normal_count++;
-											patients[j].setTemperature("normal");
+											eval_patients[e].setTemperature("normal");
 											break;
 										}	
 										case "cool":
 										{	
-											cool_count++;
-											patients[j].setTemperature("cool");
+											eval_patients[e].setTemperature("cool");
 											break;
 										}	
 										default:
@@ -497,26 +512,22 @@ public class FileProcessor
 								{
 									case "Yes":
 									{
-										ache_count++;
-										patients[j].setAches(true);
+										eval_patients[e].setAches(true);
 										break;
 									}
 									case "yes":
 									{
-										ache_count++;
-										patients[j].setAches(true);
+										eval_patients[e].setAches(true);
 										break;
 									}
 									case "No":
 									{	
-										no_ache_count++;
-										patients[j].setAches(false);
+										eval_patients[e].setAches(false);
 										break;
 									}
 									case "no":
-									{	
-										no_ache_count++;
-										patients[j].setAches(false);
+									{
+										eval_patients[e].setAches(false);
 										break;
 									}	
 									default:
@@ -536,29 +547,25 @@ public class FileProcessor
 								{
 									case "Yes":
 									{
-										sore_count++;
-										patients[j].setSoreThroat(true);
+										eval_patients[e].setSoreThroat(true);
 										
 										break;
 									}
 									case "yes":
 									{
-										sore_count++;
-										patients[j].setSoreThroat(true);
+										eval_patients[e].setSoreThroat(true);
 										
 										break;
 									}
 									
 									case "No":
 									{	
-										not_sore_count++;
-										patients[j].setSoreThroat(false);
+										eval_patients[e].setSoreThroat(false);
 										break;
 									}
 									case "no":
 									{	
-										not_sore_count++;
-										patients[j].setSoreThroat(false);
+										eval_patients[e].setSoreThroat(false);
 										break;
 									}	
 									default:
@@ -578,24 +585,22 @@ public class FileProcessor
 								{
 									case "Yes":
 									{
-										tonsillitis_count++;
-										patients[j].setTonsillitis(true);
+										eval_patients[e].setTonsillitis(true);
 										break;
 									}
 									case "yes":
 									{
-										tonsillitis_count++;
-										patients[j].setTonsillitis(true);
+										eval_patients[e].setTonsillitis(true);
 										break;
 									}
 									case "No":
 									{	
-										patients[j].setTonsillitis(false);
+										eval_patients[e].setTonsillitis(false);
 										break;
 									}	
 									case "no":
 									{	
-										patients[j].setTonsillitis(false);
+										eval_patients[e].setTonsillitis(false);
 										break;
 									}	
 									default:
@@ -613,144 +618,69 @@ public class FileProcessor
 							}	
 						
 						}//end outer switch(i)
-						
-						
-						
-						/*
-						 * The if() statements below populate the training attributes. This will help us calculate how many 
-						 * patients Have symptom x WITH tonsillitis or symptom x with NO tonsillitis for use with the 
-						 * Naive Bayes Algorithm.
-						 * 
-						 * (i == 3) is true once a full line has been scanned, then our program is ready to use this data 
-						 * to populate the training attribute arrays before scanning the next line
-						 */
 					
 						
-						if(i == 3)
-						{
-		
-							//POPULATE TEMPERATURE TRAINING ARRAYS
-							if(patients[j].isTonsillitis())
-							{
-								if(patients[j].getTemperature() == "hot")			//Patient is hot, HAS tonsillitis
-								{
-									Control.getTraining().hot.add(true);
-								}
-								else if(patients[j].getTemperature() == "normal")	//Patient is normal, HAS tonsillitis
-								{
-									Control.getTraining().normal.add(true);
-								}
-								else if(patients[j].getTemperature() == "cool")		//Patient is cool, HAS tonsillitis
-								{
-									Control.getTraining().cool.add(true);
-								}
-							}
-							else
-							{
-								if(patients[j].getTemperature() == "hot")			//Patient is hot, NO tonsillitis
-								{
-									Control.getTraining().hot.add(false);
-								}
-								else if(patients[j].getTemperature() == "normal")	//Patient is normal, NO tonsillitis
-								{
-									Control.getTraining().normal.add(false);
-								}
-								else if(patients[j].getTemperature() == "cool")		//Patient is cool, NO tonsillitis
-								{
-									Control.getTraining().cool.add(false);
-								}
-							}
-							
-							//POPULATE ACHES TRAINING ARRAYS
-							if(patients[j].isTonsillitis())
-							{
-								if(patients[j].isAches())							
-								{
-									Control.getTraining().ache.add(true);											//Patient has aches, HAS tonsillitis
-								}
-								else
-								{
-									Control.getTraining().no_ache.add(true);										//Patient has no aches, HAS tonsillitis
-								}
-							}
-							else
-							{
-								if(patients[j].isAches())
-								{
-									Control.getTraining().ache.add(false);										//Patient has aches, NO tonsillitis
-								}
-								else
-								{
-									Control.getTraining().no_ache.add(false);										//Patient has no aches, NO tonsillitis
-								}
-							}
-							
-							//POPULATE SORE THROAT ARRAYS
-							if(patients[j].isTonsillitis())
-							{
-								if(patients[j].isSoreThroat())
-								{
-									Control.getTraining().sore.add(true);											//Patient has sore throat, HAS tonsillitis
-								}
-								else
-								{
-									Control.getTraining().not_sore.add(true);										//Patient has no sore throat, HAS tonsillitis
-								}
-							}
-							else
-							{
-								if(patients[j].isSoreThroat())
-								{
-									
-									Control.getTraining().sore.add(false);										//Patient has sore throat, NO tonsillitis
-								}
-								else
-								{
-									Control.getTraining().not_sore.add(false);									//Patient has no sore throat, NO tonsillitis
-								}
-							}
-						}
-					}
-					
-					
-					if(i > 2)
+						
+					}//end if() [eval_patient if() statement]
+					else
 					{
-						System.out.println(patients[j].getTemperature() + " " + patients[j].isAches() + " " + patients[j].isSoreThroat() + " " + patients[j].isTonsillitis() );
+						System.out.println("Skipped Training line " + j + ": " + ReadData.nextLine());
 						j++;
+						i = 0;
 					}
-					i++;
+					
+					System.out.println("i = " +i + "j= " + j);
+					//i incremented after last token, j incremented after each line is read and recorded
+					if(i > 2 && j >= patients.length)
+					{
+						System.out.println("Evaluation patient recorded: " + eval_patients[e].getTemperature() + " " + eval_patients[e].isAches() + " " + eval_patients[e].isSoreThroat() + " " + eval_patients[e].isTonsillitis() );
+						j++; //new line index
+					}
+					i++; // next token index
 					
 					
 					
-				}//end while
+				}//end eval while
 				
 				
 				ReadData.close();
-				System.out.println("\n\nData processed as follows:"
-									+ "\n\nhot count: " + hot_count
-									+ "\nnormalcount: " + normal_count
-									+ "\ncool count: " + cool_count
-									+ "\nache count: " + ache_count
-									+ "\nno ache count: " + no_ache_count
-									+ "\nsore count: " + sore_count
-									+ "\nnot sore count: " + not_sore_count
-									
-									+ "\ntonsillitis count: " + tonsillitis_count);
-		}
-		catch (FileNotFoundException e) 
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		}
+			}
+			catch (FileNotFoundException e) 
+			{
+				
+				e.printStackTrace();
+				
+			}//end try/catch		
+			
+			
+		}//end Evaluation if(ratio < 100)
 		
 		
-	}
+	}//end ReadData() method
+	
+	
 	
 	/*
 	 * Getters and Setters
 	 */
 	
+
+	public Patient[] getEval_patients() {
+		return eval_patients;
+	}
+
+
+	public void setEval_patients(Patient[] eval_patients) {
+		this.eval_patients = eval_patients;
+	}
+	
+	//Getter is a modified version to return an individual patient object from the array depending on the index parameter
+	public Patient getEval_patient(int i) 
+	{
+		return eval_patients[i];
+	}
+
+
 	public void setDataSet(String DataSet)
 	{
 		this.DataSet = new File(DataSet);
@@ -759,16 +689,6 @@ public class FileProcessor
 	public void setDataSet(File chosenFile)
 	{
 		this.DataSet = chosenFile;
-	}
-
-
-	public Training getTraining() {
-		return training;
-	}
-
-
-	public void setTraining(Training training) {
-		this.training = training;
 	}
 
 
