@@ -7,7 +7,6 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +24,7 @@ public class GUI extends JFrame implements ActionListener
 	//Buttons
 	private JButton fileManagerButton;
 	static 	JButton patientEvalButton;
-	private JButton helpPageButton;
+	private JButton exitButton;
 	
 
 	public GUI(String title)
@@ -64,10 +63,10 @@ public class GUI extends JFrame implements ActionListener
 	    patientEvalButton.addActionListener(this);
 	    patientEvalButton.setEnabled(false);
 	    
-	    helpPageButton = new JButton();
-	    helpPageButton.setPreferredSize(new Dimension(257, 40));
-	    helpPageButton.setText("Help");
-	    helpPageButton.addActionListener(this);
+	    exitButton = new JButton();
+	    exitButton.setPreferredSize(new Dimension(257, 40));
+	    exitButton.setText("Exit");
+	    exitButton.addActionListener(this);
 	    
 	    //Add components
 	    header.add(headerText);
@@ -75,7 +74,7 @@ public class GUI extends JFrame implements ActionListener
 	    add(header);
 	    add(fileManagerButton);
 	    add(patientEvalButton);
-	    add(helpPageButton);
+	    add(exitButton);
 	}
 	
 	 public void actionPerformed(ActionEvent e)
@@ -101,10 +100,10 @@ public class GUI extends JFrame implements ActionListener
 			PatientEvaluation pe = new PatientEvaluation("Patient Evaluation");
 		 }
 		 //Access help page
-		 else if(e.getSource() == helpPageButton)
+		 else if(e.getSource() == exitButton)
 		 {
-			 @SuppressWarnings("unused")
-			HelpPage hp = new HelpPage("Help Page");
+			 JOptionPane.showMessageDialog(null, "Thank you for using our Naive Bayes Classifier!");
+			 System.exit(0);
 		 }
 	 }
 

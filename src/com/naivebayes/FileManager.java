@@ -177,6 +177,7 @@ public class FileManager extends JFrame implements ActionListener
 			
 			accuracy = (correct_predictions / predictions)*100;
 			
+			hide();
 			if(slider.getValue() < 100)
 			{
 				JOptionPane.showMessageDialog(null, "File Processed!\n\n"

@@ -43,15 +43,5 @@ public class Control
 		Control.training = training;
 	}
 	
-//	public static Training getEvalTraining() 
-//	{
-//		return eval_training;
-//	}
-//
-//	public static void setEvalTraining(Training eval_training)
-//	{
-//		Control.eval_training = eval_training;
-//	}
-
 
 }
