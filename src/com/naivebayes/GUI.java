@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -38,6 +39,8 @@ public class GUI extends JFrame implements ActionListener
 	    setVisible(true);
 	    setLocationRelativeTo(null);
 	    setResizable(false);
+	    
+	    
 	    
 	    //Panel properties
 	    header = new JPanel();
@@ -80,6 +83,7 @@ public class GUI extends JFrame implements ActionListener
 		 //Access file browser window for selecting dataset tp train
 		 if(e.getSource() == fileManagerButton)
 		 {
+			 
 			 JOptionPane.showMessageDialog(null, "Welcome to the Data Training Window! Please use the slider to select the percentage of your dataset to train. "
 			 									+ "\n\n NOTE: "
 			 									+ "\n\n- The remaining data will be used for self evaluation of the system."

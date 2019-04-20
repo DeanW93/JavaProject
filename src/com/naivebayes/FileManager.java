@@ -175,11 +175,22 @@ public class FileManager extends JFrame implements ActionListener
 			DecimalFormat df = new DecimalFormat("#.##");
 			df.setRoundingMode(RoundingMode.CEILING);
 			
-			accuracy = correct_predictions / predictions;
-					
-			JOptionPane.showMessageDialog(null, "File Processed!"
-												+ "\n\nResults:"
-												+ "\n\nAlgorithm predicted tonsillitis status in each patient in the evaluation portion of the dataset with " + df.format(accuracy) + "% accuracy.");
+			accuracy = (correct_predictions / predictions)*100;
+			
+			if(slider.getValue() < 100)
+			{
+				JOptionPane.showMessageDialog(null, "File Processed!\n\n"
+													+ slider.getValue() + "% of data was trained. Remaining data has been used for self evaluation."
+													+ "\n\nResults:"
+													+ "\n\nAlgorithm predicted tonsillitis status in each patient in the evaluation portion of the dataset with " + df.format(accuracy) + "% accuracy.");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "File Processed!\n\n"
+													+ "100% of data has been trained, no data remaining to self evaluate."
+													+ "\n\nPlease use our patient evaluation feature from the main menu!");
+										
+			}
 		}
 		//When cancel is pressed weindow is hidden rather than closed
 		else if (command.equals(JFileChooser.CANCEL_SELECTION))

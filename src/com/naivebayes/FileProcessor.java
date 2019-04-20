@@ -415,7 +415,7 @@ public class FileProcessor
 		
 		
 		/*
-		 * Data evaluator:
+		 * Data evaluation:
 		 * 
 		 * Description:
 		 * 
@@ -443,34 +443,42 @@ public class FileProcessor
 				int i=0;
 				int j=0;
 				int e=0;
-						
+
+				
 				while(ReadData.hasNextLine()) //Uses remaining data to self evaluate 
 				{
 					
-					//Points i to the first token, to be stored in eval_patients[i]
-					if(i > 3)
-					{
-						i = 0;
-					}
-					
-					
-					//Creates a patient for each new line, first token
-					if(i > 2 && j >= patients.length)
-					{
+					if(i > 2 && j >= patients.length)//Point index to first word of new line when line is fully read AND when we are pointing to evaluation data
+					{	
+						i = 0; 	//first token
 						if (!firstRun)
 						{
-							e++; //new patient index
+							j++;	//next line
+							e++;	//next patient
+							
+							
 						}
 						firstRun = false;
+						
+						
+						//create new test patient for self evaluation
 						System.out.println("\nCreating eval patient " + e + "...");
 						eval_patients[e] = new Patient();
-						
 					}
+					else
+					{
+						i++;	//next token
+					}
+					
+					
+					
+					System.out.println("i = " +i + " j= " + j + " e= " +e);
 					
 					System.out.println("\n" + "\nChecking line: " + j);
 					
 					if(j >= patients.length)
 					{
+						
 						//check symptoms on each line and store in a patient object
 						switch(i)
 						{
@@ -618,25 +626,21 @@ public class FileProcessor
 							}	
 						
 						}//end outer switch(i)
-					
-						
+				
+							
 						
 					}//end if() [eval_patient if() statement]
 					else
 					{
 						System.out.println("Skipped Training line " + j + ": " + ReadData.nextLine());
 						j++;
-						i = 0;
 					}
 					
-					System.out.println("i = " +i + "j= " + j);
-					//i incremented after last token, j incremented after each line is read and recorded
-					if(i > 2 && j >= patients.length)
-					{
-						System.out.println("Evaluation patient recorded: " + eval_patients[e].getTemperature() + " " + eval_patients[e].isAches() + " " + eval_patients[e].isSoreThroat() + " " + eval_patients[e].isTonsillitis() );
-						j++; //new line index
-					}
-					i++; // next token index
+					
+					
+				
+					
+					
 					
 					
 					
