@@ -1,3 +1,20 @@
+/*
+ * File Processor CLASS
+ * Author: Dean Whelan
+ * Date: 01/04/19
+ * 
+ * Description: 
+ * 
+ * 		This class is used for the purpose of processing the data set text file.
+ * 
+ * 		The CheckDataSize() method checks how many patients are contained in the dataset by counting each line.
+ * 		
+ * 		The ReadData() method processes the text file and stores the relevant data needed for each probability calculation.
+ * 
+ * 	
+ * 
+ */
+
 package com.naivebayes;
 
 import java.io.File;
@@ -25,6 +42,8 @@ public class FileProcessor
 	private double sore_count;
 	private double not_sore_count;
 	
+	
+	//Constructor
 	public FileProcessor(int ratio) 
 	{
 		this.ratio = ratio;
@@ -67,9 +86,9 @@ public class FileProcessor
 	
 	
 	/*
-	 * Read Data method:
+	 * Read Data method: 
 	 * 
-	 * Description:
+	 * Description: Processes the text file and stores the relevant data needed for each probability calculation.
 	 * 
 	 */
 	public void ReadData()
@@ -292,6 +311,9 @@ public class FileProcessor
 				 * The if() statements below populate the training attributes. This will help us calculate how many 
 				 * patients Have symptom x WITH tonsillitis or symptom x with NO tonsillitis for use with the 
 				 * Naive Bayes Algorithm.
+				 * 
+				 * It achieves this by storing a boolean true value for every given symptom with tonsillitis and
+				 * a boolean false value for every given symptom without tonsillitis.
 				 * 
 				 * (i == 3) is true once a full line has been scanned, then our program is ready to use this data 
 				 * to populate the training attribute arrays before scanning the next line

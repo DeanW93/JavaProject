@@ -1,3 +1,28 @@
+/*
+ * FileManager CLASS
+ * Author: Dean Whelan
+ * Date: 01/04/19
+ * 
+ * Description: 
+ * 
+ * 		This class displays the file manager for the user allowing the user to dynamiccaly train the software from a dataset.
+ * 		
+ * 		The user will be shown clear instructions on how to use this window, before the page displays. 
+ * 
+ * 		The user may use the slider provided to specify the percentage of the dataset they wish to use as "training data" and 
+ * 		the user is informed that the remaining data will be used by the program to self evaluate itself.
+ * 
+ * 		The user may then select a dataset of their choice using a file chooser object. This displays a panel allowing the user to
+ * 		browse their local directories and choose a file of their preference
+ * 
+ * 		NOTE: the file type is locked to .txt format, thsi prevents the user from selecting the wrong file type.
+ */
+
+
+
+
+
+
 package com.naivebayes;
 
 import java.awt.Color;

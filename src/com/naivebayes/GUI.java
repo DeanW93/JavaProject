@@ -1,3 +1,21 @@
+/*
+ * GUI CLASS
+ * Author: Dean Whelan
+ * Date: 01/04/19
+ * 
+ * Description: 
+ * 
+ * 		This class displays the main menu for the user.
+ * 		The user may access the Data training tool, the patient evaluation tool or exit the program from here.
+ * 
+ * 		NOTE: the patient evaluation tool is locked until the user processes at least one dataset. This prevents 
+ * 		incorrect input by the user which would cause errors during the custom evaluation as no data will have been trained.
+ * 
+ */
+
+
+
+
 package com.naivebayes;
 
 import java.awt.Color;
