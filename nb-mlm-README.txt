@@ -1,6 +1,23 @@
 -------------------------------NAIVE BAYES MACHINE LEARNING MODEL README-------------------------------------------------------------------------------------------------------------
 
 
+GitHub Link: https://github.com/DeanW93/JavaProject
+YouTube Demo link: https://youtu.be/QkyIWLwZfqs
+
+
+Classes list:
+	
+	-Control.java
+	-FileManager.java
+	-FileProcessor.java
+	-GUI.java
+	-Patient.java
+	-PatientEvaluation.java
+	-ProbabilityCalculator.java
+	-Training.java
+
+
+
 This Java project uses the Naive Bayes Algorithm to train a machine learning model to predict the likelyhood 
 of tonsillitis in patients with given symptoms.
 
