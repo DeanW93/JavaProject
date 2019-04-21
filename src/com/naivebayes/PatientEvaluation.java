@@ -1,3 +1,17 @@
+/*
+ * PatientEvaluation CLASS
+ * Author: Dean Whelan
+ * Date: 01/04/19
+ * 
+ * Description: 
+ * 
+ * 		This class is the GUI implementation of the patient evaluation page of the program.
+ * 
+ * 		This page allows the user to specify a patient with custom symptoms of the users choice 
+ * 		and evaluate the posterior proabbilities of the patient having tonsillitis and not having tonsillitis respectively
+ * 
+ */
+
 package com.naivebayes;
 
 import java.awt.Color;
@@ -344,6 +358,7 @@ public class PatientEvaluation extends JFrame implements ActionListener
 			DecimalFormat df = new DecimalFormat("#.##");
 			df.setRoundingMode(RoundingMode.CEILING);
 			
+			//Display results to the user
 			JOptionPane.showMessageDialog(null, "\n\n Final Posterior Probability of tonsillitis with given symptoms is " + df.format(nb.getPtonsillitis_given_instance() * 100) + "%"
 												+ "\n\n Final Posterior Probability of no tonsillitis with given symptoms is " + df.format(nb.getPno_tonsillitis_given_instance() * 100) + "%");
 		}

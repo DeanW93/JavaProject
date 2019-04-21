@@ -1,3 +1,23 @@
+/*
+ * ProbabilityCalculator CLASS
+ * Author: Dean Whelan
+ * Date: 01/04/19
+ * 
+ *
+ * Class Description:
+ * 
+ * 		This class contains the NaiveBayesAlgorithm() method used to implement the Naive Bayes Algorithm.
+ * 		
+ * 		The class contains an attribute for every porobability necessary to implement the Naive Bayes Algorithm
+ * 		There is a description of each variable and it's use below.
+ * 
+ * 
+ */
+
+
+
+
+
 package com.naivebayes;
 
 import java.util.ArrayList;
@@ -38,7 +58,20 @@ public class ProbabilityCalculator extends Training
 	 *	pinstance_yes:	patient having all three given(user input) symptoms WITH tonsillitis
 	 *	pinstance_no:	patient having all three given(user input) symptoms WITHOUT tonsillitis
 	 * 
-	 * 	Example: If patient being evaluated has no aches, pache_yes represents the probability of the patient having no aches AND having tonsillitis 
+	 * 	Example: 
+	 * 
+	 * 	If patient being evaluated has NO aches, pache_yes represents the probability of the patient having no aches AND having tonsillitis 
+	 * 	according to the data set.
+	 * 	
+	 * 	If patient being evaluated HAS aches, pache_yes represents the probability of the patient having aches AND having tonsillitis 
+	 * 	according to the data set.
+	 * 
+	 * 	Conversely:
+	 * 
+	 * 	If patient being evaluated has NO aches, pache_no represents the probability of the patient having no aches AND having NO tonsillitis 
+	 * 	according to the data set.
+	 * 	
+	 * 	If patient being evaluated HAS aches, pache_no represents the probability of the patient having aches AND having NO tonsillitis 
 	 * 	according to the data set.
 	 */
 	
@@ -82,7 +115,7 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_temp = hot_count / num_of_patients;														//P(hot)
 			ptemp_yes = hot_with_tonsillitis(hotarray) / tonsillitis_count;									//P(hot w/ tonsillitis)
-			ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);			//P(normal w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			ptemp_no = hot_without_tonsillitis(hotarray) / (num_of_patients - tonsillitis_count);			//P(normal w/o tonsillitis)						
 		}
 		else if(patient.getTemperature() == "normal" | patient.getTemperature() == "Normal")
 		{
@@ -105,7 +138,7 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_ache = ache_count / num_of_patients;														//P(aches)
 			pache_yes = ache_with_tonsillitis(achearray) / tonsillitis_count;								//P(aches w/ tonsillitis)
-			pache_no = ache_without_tonsillitis(achearray) / (num_of_patients - tonsillitis_count); 		//P(aches w/o tonsillitis)						//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			pache_no = ache_without_tonsillitis(achearray) / (num_of_patients - tonsillitis_count); 		//P(aches w/o tonsillitis)						
 		}
 		else
 		{
@@ -119,7 +152,7 @@ public class ProbabilityCalculator extends Training
 		{
 			pinst_sore = sore_count / num_of_patients;														//P(sore throat)
 			psore_yes = sore_with_tonsillitis(sorearray) / tonsillitis_count;								//P(sore throat w/ tonsillitis)
-			psore_no = sore_without_tonsillitis(sorearray) / (num_of_patients - tonsillitis_count);			//P(sore throat w/o tonsillitis)				//!!!!!!!!!!!!!!!!!!!!!!!!!!!!CHECK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			psore_no = sore_without_tonsillitis(sorearray) / (num_of_patients - tonsillitis_count);			//P(sore throat w/o tonsillitis)				
 		}
 		else 
 		{
@@ -145,10 +178,10 @@ public class ProbabilityCalculator extends Training
 		//P(X)
 		pinstance = pinst_temp * pinst_ache * pinst_sore;
 		
-		//P(Tonsillitis | X) = [P(X | Tonsillitis = yes)] * [P(tonsillitis = yes)]
+		//P(Tonsillitis | X) = [P(X | Tonsillitis = yes)] * [P(tonsillitis = yes)] / [P(X | Tonsillitis = yes)] + [P(X | Tonsillitis = no)]
 		ptonsillitis_given_instance = (pinstance_yes)/(pinstance_yes + pinstance_no);
 		
-		//P(No Tonsillitis | X) = [P(X | Tonsillitis = no)] * [P(tonsillitis = yes)]
+		//P(No Tonsillitis | X) = [P(X | Tonsillitis = no)] * [P(tonsillitis = yes)] / [P(X | Tonsillitis = no)] + [P(X | Tonsillitis = yes)]
 		pno_tonsillitis_given_instance = (pinstance_no)/(pinstance_no + pinstance_yes);
 	}
 	
@@ -436,6 +469,8 @@ public class ProbabilityCalculator extends Training
 		return counter;
 	}
 	
+	
+	//Getters and setters
 	public double getP_yes() {
 		return p_yes;
 	}

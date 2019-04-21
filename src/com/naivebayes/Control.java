@@ -14,9 +14,6 @@
  * 		The symptoms used in the evaluation are constrained to temperature / aches / sore throat. 
  * 
  *  	The program may dynamically train itself using a percentage of the dataset specified by the user and will evaluate itself with the remaining data.
- *  
- * 
- *  
  * 
  * 
  * Class Description:

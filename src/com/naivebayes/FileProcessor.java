@@ -88,7 +88,23 @@ public class FileProcessor
 	/*
 	 * Read Data method: 
 	 * 
-	 * Description: Processes the text file and stores the relevant data needed for each probability calculation.
+	 * Training section:
+	 * 
+	 * Description: Processes the text file and stores the relevant training patient data needed for each probability calculation.
+	 * 
+	 * This method uses three index variables described below. Combined with the nested switch statements these index variables allow the program
+	 * to dynamically store each line of symptoms in a new patient.
+	 * 
+	 *  	EXAMPLE:
+	 *  
+	 *  	New line -> New Patient
+	 *  	For a new line j increments, patient[j] is created
+	 *  
+	 *  	New token -> New symptom
+	 *  	For a new word(token) i is incremented, case i in the switch is the relevant case for adding the relevant symptom.
+	 * 	
+	 * Counters are used throughout the method to count how many times each symptom/class occurs. This is used later in the NaiveBaysAlgorithm() method
+	 * for calculating the relative probabilities 
 	 * 
 	 */
 	public void ReadData()
@@ -437,9 +453,19 @@ public class FileProcessor
 		
 		
 		/*
-		 * Data evaluation:
+		 * Data evaluation section:
 		 * 
-		 * Description:
+		 * Description: -This uses a similar algorithm to the training section of the method.
+		 * 
+		 * 				-An extra index variable "e" is used to populate the evaluation patients array
+		 * 
+		 * 				-j is still used as a line index and i is still used as a token index. (see ReadData() description)
+		 * 
+		 * 				-This section only runs IF there is a portion of the dataset not used for training ie: if ratio < 100
+		 * 				
+		 * 				-This algorithm scans the full dataset and skips past the portion of data used for training. The algorithm for storing 
+		 * 				 self evaluation data only runs when the index passes the training portion of the dataset after which the evaluation 
+		 * 				 patients array is full populated with data
 		 * 
 		 */
 		if(ratio < 100)
@@ -458,8 +484,7 @@ public class FileProcessor
 				 * 
 				 * 		e variable: Index for populating eval_patient array.	
 				 * 
-				 * 		tonsillitis_count: Initializes a counter for the total number of patients with tonsillitis 
-				 * 							in the data set, used later in the NAive Bayes Algorithm
+				 * 		
 				 */
 				boolean firstRun = true;
 				int i=0;
@@ -473,7 +498,7 @@ public class FileProcessor
 					if(i > 2 && j >= patients.length)//Point index to first word of new line when line is fully read AND when we are pointing to evaluation data
 					{	
 						i = 0; 	//first token
-						if (!firstRun)
+						if (!firstRun)//Only increments after first run to prevent errors in data
 						{
 							j++;	//next line
 							e++;	//next patient
@@ -511,7 +536,6 @@ public class FileProcessor
 									{
 										case "hot":
 										{
-											System.out.println(eval_patients[e] + "exists?: " + eval_patients[e].toString());
 											eval_patients[e].setTemperature("hot");
 											
 											break;

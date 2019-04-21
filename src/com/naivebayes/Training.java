@@ -5,7 +5,13 @@
  * 
  * Description:
  * 
+ * This class stores important training data for the training portion of the dataset.
  * 
+ * Each symptom has a respective boolean array list. 
+ * 
+ * The list is populated with a true value for every instance of the symptom in a patient whereby the patient ALSO HAS tonsillitis
+ * 
+ * Conversely The list is populated with a false value for every instance of the symptom in a patient whereby the patient has NO tonsillitis
  */
 
 package com.naivebayes;
